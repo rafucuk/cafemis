@@ -1,0 +1,4 @@
+files:
+  - source: /cafemis-locales/en-US.yml
+    translation: /cafemis-locales/%locale%.yml
+    update_option: update_as_unapproved

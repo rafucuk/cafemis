@@ -1,0 +1,46 @@
+/*
+ * SPDX-FileCopyrightText: marie and other Cafemis contributors
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+import { Injectable } from '@nestjs/common';
+import { Endpoint } from '@/server/api/endpoint-base.js';
+import { SponsorsService } from '@/core/SponsorsService.js';
+
+export const meta = {
+	tags: ['meta'],
+	description: 'Get Cafemis Sponsors or Instance Sponsors',
+
+	requireCredential: false,
+	requireCredentialPrivateMode: false,
+
+	// 2 calls per second
+	limit: {
+		duration: 1000,
+		max: 2,
+	},
+} as const;
+
+export const paramDef = {
+	type: 'object',
+	properties: {
+		forceUpdate: { type: 'boolean', default: false },
+		instance: { type: 'boolean', default: false },
+	},
+	required: [],
+} as const;
+
+@Injectable()
+export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-disable-line import/no-default-export
+	constructor(
+		private sponsorsService: SponsorsService,
+	) {
+		super(meta, paramDef, async (ps, me) => {
+			if (ps.instance) {
+				return { sponsor_data: await this.sponsorsService.instanceSponsors(ps.forceUpdate) };
+			} else {
+				return { sponsor_data: await this.sponsorsService.sharkeySponsors(ps.forceUpdate) };
+			}
+		});
+	}
+}
