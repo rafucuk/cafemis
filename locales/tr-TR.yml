@@ -1897,7 +1897,7 @@ _registry:
   domain: "Alan"
   createKey: "Anahtar oluştur"
 _aboutMisskey:
-  about: "Cafemis, syuilo tarafından 2014'ten beri geliştirilen açık kaynaklı bir yazılımdır."
+  about: "Misskey, syuilo tarafından 2014'ten beri geliştirilen açık kaynaklı bir yazılımdır."
   contributors: "Ana katkıda bulunanlar"
   allContributors: "Tüm katkıda bulunanlar"
   source: "Kaynak kodu"

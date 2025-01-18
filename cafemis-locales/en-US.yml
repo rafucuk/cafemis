@@ -237,7 +237,7 @@ _signup:
   approvalPending: "Your account has been created and is awaiting approval."
   reasonInfo: "Please enter a reason as to why you want to join the instance."
 _aboutMisskey:
-  about: "Cafemis is open-source software based on Misskey which has been in development by syuilo since 2014."
+  about: "Cafemis is open-source software based on Misskey which has been in development by rauf since 2014."
   original: "Misskey original"
   original_sharkey: "Cafemis original"
   thisIsModifiedVersion: "{name} uses a modified version of the original Cafemis."

@@ -7422,7 +7422,7 @@ export interface Locale extends ILocale {
     };
     "_aboutMisskey": {
         /**
-         * Cafemis is open-source software based on Misskey which has been in development by syuilo since 2014.
+         * Cafemis is open-source software based on Misskey which has been in development by rauf since 2014.
          */
         "about": string;
         /**

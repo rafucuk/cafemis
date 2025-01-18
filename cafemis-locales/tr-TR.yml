@@ -236,7 +236,7 @@ _signup:
   approvalPending: "Hesabınız oluşturuldu ve onay bekliyor."
   reasonInfo: "Örneğe katılmak isteme nedeninizi girin."
 _aboutMisskey:
-  about: "Cafemis, 2014 yılından beri syuilo tarafından geliştirilmiş olan Misskey tabanlı açık kaynaklı bir yazılımdır."
+  about: "Cafemis, 2014 yılından beri rauf tarafından geliştirilmiş olan Misskey tabanlı açık kaynaklı bir yazılımdır."
   original: "Misskey orijinali"
   original_sharkey: "Cafemis orijinali"
   thisIsModifiedVersion: "{name} orijinal Cafemis'in değiştirilmiş bir sürümünü kullanıyor."
