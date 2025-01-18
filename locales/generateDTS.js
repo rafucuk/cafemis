@@ -57,7 +57,7 @@ function createMembers(record) {
 }
 
 export default function generateDTS() {
-	const sharkeyLocale = yaml.load(fs.readFileSync(`${__dirname}/../cafemis-locales/en-US.yml`, 'utf-8'));
+	const sharkeyLocale = yaml.load(fs.readFileSync(`${__dirname}/../cafemis-locales/tr-TR.yml`, 'utf-8'));
 	const misskeyLocale = yaml.load(fs.readFileSync(`${__dirname}/tr-TR.yml`, 'utf-8'));
 	const locale = merge(misskeyLocale, sharkeyLocale);
 

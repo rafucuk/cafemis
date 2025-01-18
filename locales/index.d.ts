@@ -18,14 +18,14 @@ export interface Locale extends ILocale {
      */
     "headlineMisskey": string;
     /**
-     * Welcome! Cafemis is an open source, decentralized microblogging service.
-     * Create "notes" to share your thoughts with everyone around you. 📡
-     * With "reactions", you can also quickly express your feelings about everyone's notes. 👍
-     * Let's explore a new world! 🚀
+     * Hoş geldiniz! Cafemis, açık kaynaklı, merkezi olmayan bir mikroblog hizmetidir.
+     * Düşüncelerinizi çevrenizdeki herkesle paylaşmak için "notlar" oluşturun. 📡
+     * "Tepkiler" ile de everyone's notlarına hızlıca hislerinizi ifade edebilirsiniz. 👍
+     * Yeni bir dünyayı keşfet! 🚀
      */
     "introMisskey": string;
     /**
-     * {name} is one of the services powered by the open source platform <b>Cafemis</b> which is based on Misskey (referred to as a "Misskey instance").
+     * {name}, Misskey'e dayalı <b>Cafemis</b> açık kaynak platformu tarafından desteklenen hizmetlerden biridir ("Misskey örneği" olarak adlandırılır).
      */
     "poweredByMisskeyDescription": ParameterizedString<"name">;
     /**
@@ -91,7 +91,7 @@ export interface Locale extends ILocale {
      */
     "enterUsername": string;
     /**
-     * Boosted by {user}
+     * {user} tarafından güçlendirildi
      */
     "renotedBy": ParameterizedString<"user">;
     /**
@@ -211,7 +211,7 @@ export interface Locale extends ILocale {
      */
     "copyLink": string;
     /**
-     * Copy boost link
+     * Güçlendirme bağlantısını kopyala
      */
     "copyLinkRenote": string;
     /**
@@ -223,7 +223,7 @@ export interface Locale extends ILocale {
      */
     "deleteAndEdit": string;
     /**
-     * Are you sure you want to redraft this note? This means you will lose all reactions, boosts, and replies to it.
+     * Bu notu tekrar taslak olarak kaydetmek istediğinizden emin misiniz? Bu, tüm tepkileri, güçlendirmeleri ve yanıtları kaybedeceğiniz anlamına gelir.
      */
     "deleteAndEditConfirm": string;
     /**
@@ -455,27 +455,27 @@ export interface Locale extends ILocale {
      */
     "enterEmoji": string;
     /**
-     * Boost
+     * Güçlendirme
      */
     "renote": string;
     /**
-     * Remove boost
+     * Güçlendirmeyi kaldır
      */
     "unrenote": string;
     /**
-     * Boosted.
+     * Güçlendirildi.
      */
     "renoted": string;
     /**
-     * Boosted to {name}
+     * {name}'e güçlendirildi
      */
     "renotedToX": ParameterizedString<"name">;
     /**
-     * This post can't be boosted.
+     * Bu gönderi güçlendirilemez.
      */
     "cantRenote": string;
     /**
-     * A boost can't be boosted.
+     * Bir güçlendirme güçlendirilemez.
      */
     "cantReRenote": string;
     /**
@@ -483,7 +483,7 @@ export interface Locale extends ILocale {
      */
     "quote": string;
     /**
-     * Channel-only Boost
+     * Sadece kanal güçlendirmesi
      */
     "inChannelRenote": string;
     /**
@@ -591,11 +591,11 @@ export interface Locale extends ILocale {
      */
     "unmute": string;
     /**
-     * Mute Boosts
+     * Güçlendirmeleri sessize al
      */
     "renoteMute": string;
     /**
-     * Unmute Boosts
+     * Güçlendirmeleri sessizden çıkar
      */
     "renoteUnmute": string;
     /**
@@ -719,7 +719,7 @@ export interface Locale extends ILocale {
      */
     "flagAsBot": string;
     /**
-     * Enable this option if this account is controlled by a program. If enabled, it will act as a flag for other developers to prevent endless interaction chains with other bots and adjust Cafemis's internal systems to treat this account as a bot.
+     * Bu seçenek, hesabın bir program tarafından kontrol edildiğini belirtir. Etkinleştirilirse, diğer botlarla sonsuz etkileşim zincirlerinden kaçınmak ve hesabı bir bot olarak işlemek için geliştiriciler için bir işaret görevi görür.
      */
     "flagAsBotDescription": string;
     /**
@@ -759,11 +759,11 @@ export interface Locale extends ILocale {
      */
     "showOnRemote": string;
     /**
-     * Continue on remote instance
+     * Uzak örnekte devam et
      */
     "continueOnRemote": string;
     /**
-     * Choose a instance from Misskey Hub
+     * Cafemis Hub'tan bir örnek seçin
      */
     "chooseServerOnMisskeyHub": string;
     /**
@@ -879,7 +879,7 @@ export interface Locale extends ILocale {
      */
     "silenceThisInstance": string;
     /**
-     * Silence media from this instance
+     * Bu örnekten gelen medyayı sessize al
      */
     "mediaSilenceThisInstance": string;
     /**
@@ -963,15 +963,15 @@ export interface Locale extends ILocale {
      */
     "silencedInstances": string;
     /**
-     * List the host names of the instances that you want to silence, separated by a new line. All accounts belonging to the listed instances will be treated as silenced, and can only make follow requests, and cannot mention local accounts if not followed. This will not affect the blocked instances.
+     * Belirli örneklerden gelen tüm hesaplar sessizleştirilmiş gibi davranılacak ve yalnızca takip istekleri gönderebilir. Yerel hesaplar, takip edilmedikçe bahsedilemez. Bu, engellenmiş örnekleri etkilemeyecektir.
      */
     "silencedInstancesDescription": string;
     /**
-     * Media-silenced instances
+     * Medyası sessize alınmış örnekler
      */
     "mediaSilencedInstances": string;
     /**
-     * List the host names of the instances that you want to media-silence, separated by a new line. All accounts belonging to the listed instances will be treated as sensitive, and can't use custom emojis. This will not affect the blocked instances.
+     * Belirli örneklerden gelen tüm hesaplar hassas gibi davranılacak ve özel emojis kullanamayacaklar. Bu, engellenmiş örnekleri etkilemeyecektir.
      */
     "mediaSilencedInstancesDescription": string;
     /**
@@ -1011,7 +1011,7 @@ export interface Locale extends ILocale {
      */
     "pinLimitExceeded": string;
     /**
-     * Installation of Cafemis has been finished! Please create an admin user.
+     * Cafemis kurulumu tamamlandı! Lütfen bir yönetici kullanıcı oluşturun.
      */
     "intro": string;
     /**
@@ -1343,7 +1343,7 @@ export interface Locale extends ILocale {
      */
     "selectFolders": string;
     /**
-     * No file selected
+     * Seçilmiş dosya yok
      */
     "fileNotSelected": string;
     /**
@@ -1715,7 +1715,7 @@ export interface Locale extends ILocale {
      */
     "enableServiceworker": string;
     /**
-     * List one username per line. Use "*@instance.com" to specify all users of an instance
+     * Her satıra bir kullanıcı adı yazın. Bir örneğin tüm kullanıcılarını belirtmek için "*@instance.com" kullanın
      */
     "antennaUsersDescription": string;
     /**
@@ -1791,7 +1791,7 @@ export interface Locale extends ILocale {
      */
     "about": string;
     /**
-     * About Cafemis
+     * Cafemis Hakkında
      */
     "aboutMisskey": string;
     /**
@@ -1971,7 +1971,7 @@ export interface Locale extends ILocale {
      */
     "quoteQuestion": string;
     /**
-     * The text in clipboard is long. Would you like to attach it as a text file?
+     * Panodaki metin uzun. Bunu bir metin dosyası olarak eklemek ister misiniz?
      */
     "attachAsFileQuestion": string;
     /**
@@ -1991,7 +1991,7 @@ export interface Locale extends ILocale {
      */
     "signinRequired": string;
     /**
-     * To continue, you need to go to your instance to perform this action or sign up / log in to the instance you are trying to interact with.
+     * Devam etmek için, bu işlemi gerçekleştirmek veya etkileşimde bulunmak istediğiniz örneğe gitmeniz ya da kayıt olmanız / oturum açmanız gerekmektedir.
      */
     "signinOrContinueOnRemote": string;
     /**
@@ -2091,7 +2091,7 @@ export interface Locale extends ILocale {
      */
     "showNoteActionsOnlyHover": string;
     /**
-     * Show the number of reactions in notes
+     * Notlardaki tepki sayısını göster
      */
     "showReactionsCount": string;
     /**
@@ -2348,7 +2348,7 @@ export interface Locale extends ILocale {
      */
     "notUseSound": string;
     /**
-     * Output sounds only if Cafemis is active.
+     * Sadece Cafemis etkindir ses çıktısı ver.
      */
     "useSoundOnlyWhenActive": string;
     /**
@@ -2416,7 +2416,7 @@ export interface Locale extends ILocale {
      */
     "scratchpad": string;
     /**
-     * The Scratchpad provides an environment for AiScript experiments. You can write, execute, and check the results of it interacting with Cafemis in it.
+     * Karalama defteri, AiScript deneyimleri için bir ortam sağlar. Cafemis ile etkileşime girerek yazabilir, çalıştırabilir ve sonuçlarını görebilirsiniz.
      */
     "scratchpadDescription": string;
     /**
@@ -2864,7 +2864,7 @@ export interface Locale extends ILocale {
      */
     "reportAbuse": string;
     /**
-     * Report boost
+     * Güçlendirmeyi şikayet et
      */
     "reportAbuseRenote": string;
     /**
@@ -2988,7 +2988,7 @@ export interface Locale extends ILocale {
      */
     "repliesCount": string;
     /**
-     * Number of boosts sent
+     * Gönderilen güçlendirme sayısı
      */
     "renotesCount": string;
     /**
@@ -2996,7 +2996,7 @@ export interface Locale extends ILocale {
      */
     "repliedCount": string;
     /**
-     * Number of boosts received
+     * Alınan güçlendirme sayısı
      */
     "renotedCount": string;
     /**
@@ -3184,8 +3184,8 @@ export interface Locale extends ILocale {
      */
     "sendErrorReports": string;
     /**
-     * When turned on, detailed error information will be shared with Cafemis when a problem occurs, helping to improve the quality of Cafemis.
-     * This will include information such the version of your OS, what browser you're using, your activity in Cafemis, etc.
+     * Açıkken, bir sorun olduğunda ayrıntılı hata bilgileri Cafemis ile paylaşılacak, böylece Cafemis'in kalitesinin artırılmasına yardımcı olunacaktır.
+     * Bu, işletim sisteminizin sürümü, hangi tarayıcıyı kullandığınız, Cafemis'teki etkinliğiniz gibi bilgileri içerecektir.
      */
     "sendErrorReportsDescription": string;
     /**
@@ -3441,7 +3441,7 @@ export interface Locale extends ILocale {
      */
     "noMaintainerInformationWarning": string;
     /**
-     * Contact URL is not set.
+     * İletişim URL'si ayarlanmadı.
      */
     "noInquiryUrlWarning": string;
     /**
@@ -3565,7 +3565,7 @@ export interface Locale extends ILocale {
      */
     "learnMore": string;
     /**
-     * Cafemis has been updated!
+     * Cafemis güncellendi!
      */
     "misskeyUpdated": string;
     /**
@@ -3585,7 +3585,7 @@ export interface Locale extends ILocale {
      */
     "accountDeletionInProgress": string;
     /**
-     * A name that identifies your account from others on this server. You can use the alphabet (a~z, A~Z), digits (0~9) or underscores (_). Usernames cannot be changed later.
+     * Bu sunucuda hesabınızı diğerlerinden ayırt eden bir ad. Alfabe (a~z, A~Z), rakamlar (0~9) veya alt çizgi (_) kullanabilirsiniz. Kullanıcı adları daha sonra değiştirilemez.
      */
     "usernameInfo": string;
     /**
@@ -4097,11 +4097,11 @@ export interface Locale extends ILocale {
      */
     "remindMeLater": string;
     /**
-     * Have you taken a liking to Cafemis?
+     * Cafemis'i beğendiniz mi?
      */
     "didYouLikeMisskey": string;
     /**
-     * {host} uses the free software, Cafemis. We would highly appreciate your donations so development of Cafemis can continue!
+     * {host}, Cafemis adlı ücretsiz yazılımı kullanıyor. Cafemis gelişiminin devam edebilmesi için bağışlarınızı çok takdir ederiz!
      */
     "pleaseDonate": ParameterizedString<"host">;
     /**
@@ -4213,11 +4213,11 @@ export interface Locale extends ILocale {
      */
     "thisPostMayBeAnnoyingIgnore": string;
     /**
-     * Collapse boosts you've already seen
+     * Gördüğünüz güçlendirmeleri daralt
      */
     "collapseRenotes": string;
     /**
-     * Collapse boosts that you have boosted or reacted to
+     * Güçlendirdiğiniz veya tepki verdiğiniz güçlendirmeleri daralt
      */
     "collapseRenotesDescription": string;
     /**
@@ -4386,7 +4386,7 @@ export interface Locale extends ILocale {
      */
     "reactionsDisplaySize": string;
     /**
-     * Limits the maximum width of reactions and display them in reduced size.
+     * Tepkilerin maksimum genişliğini sınırla ve küçültülmüş boyutta göster.
      */
     "limitWidthOfReaction": string;
     /**
@@ -4446,7 +4446,7 @@ export interface Locale extends ILocale {
      */
     "reactionsList": string;
     /**
-     * Boosts
+     * Güçlendirmeler
      */
     "renotesList": string;
     /**
@@ -4566,15 +4566,15 @@ export interface Locale extends ILocale {
      */
     "specifyUser": string;
     /**
-     * Are you sure that you want to look this up?
+     * Bunu gerçekten aramak istediğinize emin misiniz?
      */
     "lookupConfirm": string;
     /**
-     * Are you sure you want to open this hashtags page?
+     * Bu etiket sayfasını açmak istediğinize emin misiniz?
      */
     "openTagPageConfirm": string;
     /**
-     * Specify a host
+     * Bir ana bilgisayar belirtin
      */
     "specifyHost": string;
     /**
@@ -4610,7 +4610,7 @@ export interface Locale extends ILocale {
      */
     "later": string;
     /**
-     * To Cafemis
+     * Cafemis'e git
      */
     "goToMisskey": string;
     /**
@@ -4746,11 +4746,11 @@ export interface Locale extends ILocale {
      */
     "useSecurityKey": string;
     /**
-     * Replies
+     * Yanıtlar
      */
     "replies": string;
     /**
-     * Boosts
+     * Güçlendirmeler
      */
     "renotes": string;
     /**
@@ -4794,7 +4794,7 @@ export interface Locale extends ILocale {
      */
     "dateAndTime": string;
     /**
-     * Show boosts
+     * Güçlendirmeleri göster
      */
     "showRenotes": string;
     /**
@@ -4850,7 +4850,7 @@ export interface Locale extends ILocale {
      */
     "sourceCode": string;
     /**
-     * The source code is not yet available. Please contact your administrator to fix this problem.
+     * Kaynak kod henüz mevcut değil. Lütfen bu sorunu çözmek için yöneticinize başvurun.
      */
     "sourceCodeIsNotYetProvided": string;
     /**
@@ -4858,7 +4858,7 @@ export interface Locale extends ILocale {
      */
     "repositoryUrl": string;
     /**
-     * If there is a repository where the source code is publicly available, enter its URL. If you are using Cafemis as-is (without any changes to the source code), enter https://github.com/rafucuk/cafemis/.
+     * Kaynak kodunun halka açık olarak yayınlandığı bir depo varsa URL'sini girin. Cafemis'i olduğu gibi kullanıyorsanız (kaynak kodunda herhangi bir değişiklik yapmadan), https://github.com/rafucuk/cafemis/ adresini girin.
      */
     "repositoryUrlDescription": string;
     /**
@@ -4974,7 +4974,7 @@ export interface Locale extends ILocale {
      */
     "overwriteContentConfirm": string;
     /**
-     * Seasonal screen effects
+     * Mevsimsel ekran efektleri
      */
     "seasonalScreenEffect": string;
     /**
@@ -5090,7 +5090,7 @@ export interface Locale extends ILocale {
      */
     "keepOriginalFilenameDescription": string;
     /**
-     * No description
+     * Açıklama yok
      */
     "noDescription": string;
     /**
@@ -5110,7 +5110,7 @@ export interface Locale extends ILocale {
      */
     "confirmWhenRevealingSensitiveMedia": string;
     /**
-     * This media might be sensitive. Are you sure you want to reveal it?
+     * Bu medya hassas olabilir. Açığa çıkarmak istediğinizden emin misiniz?
      */
     "sensitiveMediaRevealConfirm": string;
     /**
@@ -5293,11 +5293,11 @@ export interface Locale extends ILocale {
          */
         "status": string;
         /**
-         * Suspend delivery
+         * Teslimatı durdur
          */
         "stop": string;
         /**
-         * Resume delivery
+         * Teslimatı sürdür
          */
         "resume": string;
         "_type": {
@@ -5423,7 +5423,7 @@ export interface Locale extends ILocale {
          */
         "silenceDescription": string;
         /**
-         * New
+         * Yeni
          */
         "new": string;
     };
@@ -5473,7 +5473,7 @@ export interface Locale extends ILocale {
          */
         "haveFun": ParameterizedString<"name">;
         /**
-         * You can proceed to a tutorial on how to use {name} (Cafemis) or you can exit the setup here and start using it immediately.
+         * {name} (Cafemis) kullanımı ile ilgili bir eğitime devam edebilirsiniz veya buradan ayarları bitirip hemen kullanmaya başlayabilirsiniz.
          */
         "youCanContinueTutorial": ParameterizedString<"name">;
         /**
@@ -5512,7 +5512,7 @@ export interface Locale extends ILocale {
              */
             "title": string;
             /**
-             * Here, you can learn the basics of using Cafemis and its features.
+             * Burada, Cafemis kullanımı ve özellikleri hakkında temel bilgileri öğrenebilirsiniz.
              */
             "description": string;
         };
@@ -5522,7 +5522,7 @@ export interface Locale extends ILocale {
              */
             "title": string;
             /**
-             * Posts on Cafemis are called 'Notes.' Notes are arranged chronologically on the timeline and are updated in real-time.
+             * Cafemis üzerindeki gönderilere 'Notlar' denir. Notlar, zaman çizelgesinde kronolojik olarak sıralanır ve gerçek zamanlı olarak güncellenir.
              */
             "description": string;
             /**
@@ -5552,7 +5552,7 @@ export interface Locale extends ILocale {
              */
             "description": string;
             /**
-             * Reactions can be added by clicking the '{reaction}' button on the note. Try reacting to this sample note!
+             * Not üzerindeki '{reaction}' düğmesine tıklayarak tepkiler ekleyebilirsiniz. Bu örnek notuna tepki vermeyi deneyin!
              */
             "letsTryReacting": ParameterizedString<"reaction">;
             /**
@@ -5564,7 +5564,7 @@ export interface Locale extends ILocale {
              */
             "reactNotification": string;
             /**
-             * You can undo a reaction by pressing the '{undo}' button.
+             * Tepkiyi geri almak için '{undo}' düğmesine basabilirsiniz.
              */
             "reactDone": ParameterizedString<"undo">;
         };
@@ -5574,7 +5574,7 @@ export interface Locale extends ILocale {
              */
             "title": string;
             /**
-             * Cafemis provides multiple timelines based on usage (some may not be available depending on the server's policies).
+             * Cafemis, kullanımına bağlı olarak farklı zaman çizelgeleri sunar (sunucunun politikalarına bağlı olarak bazıları kullanılabilir olmayabilir).
              */
             "description1": string;
             /**
@@ -5602,7 +5602,7 @@ export interface Locale extends ILocale {
              */
             "description3": ParameterizedString<"link">;
             /**
-             * You can view notes from connected servers picked by your admins.
+             * Bağlı sunuculardan, yöneticileriniz tarafından seçilmiş olan notları görebilirsiniz.
              */
             "bubble": string;
         };
@@ -5612,7 +5612,7 @@ export interface Locale extends ILocale {
              */
             "title": string;
             /**
-             * When posting a note on Cafemis, various options are available. The posting form looks like this.
+             * Cafemis üzerinde bir not paylaştığınızda, çeşitli seçenekler mevcuttur. Paylaşım formu aşağıdaki gibi görünmektedir.
              */
             "description1": string;
             "_visibility": {
@@ -5625,11 +5625,11 @@ export interface Locale extends ILocale {
                  */
                 "public": string;
                 /**
-                 * Public only on the Home timeline. People visiting your profile, via followers, and through boosts can see it.
+                 * Sadece Ana zaman çizelgesinde herkese açık. Profilinizi ziyaret edenler, takip edenler ve güçlendirmelerle görebilir.
                  */
                 "home": string;
                 /**
-                 * Visible to followers only. Only followers can see it and no one else, and it cannot be boosted by others.
+                 * Sadece takipçilere görünür. Sadece takipçileri görebilir, başkası göremez ve başkaları tarafından güçlendirilemez.
                  */
                 "followers": string;
                 /**
@@ -5708,11 +5708,11 @@ export interface Locale extends ILocale {
         };
         "_done": {
             /**
-             * The tutorial is complete! 🎉
+             * Eğitim tamamlandı! 🎉
              */
             "title": string;
             /**
-             * The functions introduced here are just a small part. For a more detailed understanding of using Cafemis, please refer to {link}.
+             * Burada tanıtılan işlevler sadece küçük bir kısmıdır. Cafemis'i daha ayrıntılı anlamak için lütfen {link} adresine başvurun.
              */
             "description": ParameterizedString<"link">;
         };
@@ -5735,7 +5735,7 @@ export interface Locale extends ILocale {
          */
         "global": string;
         /**
-         * In the Bubble timeline, you can see notes from connected servers picked by your admins.
+         * Kabarcık zaman çizelgesinde, bağlı sunuculardan yöneticileriniz tarafından seçilen notları görebilirsiniz.
          */
         "bubble": string;
     };
@@ -5795,11 +5795,11 @@ export interface Locale extends ILocale {
          */
         "reactionsBufferingDescription": string;
         /**
-         * Contact URL
+         * İletişim URL'si
          */
         "inquiryUrl": string;
         /**
-         * Specify the URL of a web page that contains a contact form or the instance operators' contact information.
+         * İletişim formu içeren bir web sayfasının veya örnek operatörlerinin iletişim bilgilerinin URL'sini belirtin.
          */
         "inquiryUrlDescription": string;
         /**
@@ -5815,15 +5815,15 @@ export interface Locale extends ILocale {
          */
         "openRegistrationWarning": string;
         /**
-         * Logo URL
+         * Logo URL'si
          */
         "sidebarLogoUrl": string;
         /**
-         * Specifies the logo to use instead of the regular icon in high definition, dynamic-width scenarios.
+         * Yüksek çözünürlük, dinamik genişlik senaryolarında düzenli ikon yerine kullanılacak logoyu belirler.
          */
         "sidebarLogoDescription": string;
         /**
-         * E.g. In the sidebar, to visitors and in the "About" page.
+         * Örneğin, kenar çubuğunda, ziyaretçilere ve "Hakkında" sayfasında.
          */
         "sidebarLogoUsageExample": string;
     };
@@ -5859,14 +5859,14 @@ export interface Locale extends ILocale {
          */
         "moveCannotBeUndone": string;
         /**
-         * This will migrate your account to a different one.
-         * 　・Followers from this account will automatically be migrated to the new account
-         * 　・This account will unfollow all users it is currently following
-         * 　・You will be unable to create new notes etc. on this account
+         * Hesabınız başka bir hesaba taşınacak.
+         * 　・Bu hesap ile yeni hesabınızdaki takipçiler otomatik olarak taşınacaktır
+         * 　・Bu hesap, şu anda takip ettiği tüm kullanıcıları takipten çıkacaktır
+         * 　・Bu hesap üzerinde yeni notlar vb. oluşturamazsınız
          *
-         * While migration of followers is automatic, you must manually prepare some steps to migrate the list of users you are following. To do so, carry out a follows export that you will later import on the new account in the settings menu. The same procedure applies to your lists as well as your muted and blocked users.
+         * Takipçi listelerinin taşınması otomatik olup, takip ettiğiniz kullanıcıların listesini taşımak için bazı adımları manuel olarak hazırlamanız gerekmektedir. Bunu yapmak için ayarlar menüsünde takipleri dışa aktarım gerçekleştirin ve daha sonra yeni hesabınızda bu listeyi içe aktarın. Aynı prosedür, listeleriniz, sessize aldığınız ve engellediğiniz kullanıcılar için de geçerlidir.
          *
-         * (This explanation applies to Cafemis v13.12.0 and later. Other ActivityPub software, such as Mastodon, might function differently.)
+         * (Bu açıklama, Cafemis v13.12.0 ve sonrasında geçerlidir. Mastodon gibi diğer ActivityPub yazılımları farklı çalışabilir.)
          */
         "moveAccountDescription": string;
         /**
@@ -5906,7 +5906,7 @@ export interface Locale extends ILocale {
         "_types": {
             "_notes1": {
                 /**
-                 * just setting up my shonk
+                 * şonk kuruyorum
                  */
                 "title": string;
                 /**
@@ -5914,7 +5914,7 @@ export interface Locale extends ILocale {
                  */
                 "description": string;
                 /**
-                 * Have a good time with Cafemis!
+                 * Cafemis ile iyi vakit geçir!
                  */
                 "flavor": string;
             };
@@ -6238,7 +6238,7 @@ export interface Locale extends ILocale {
                  */
                 "description": string;
                 /**
-                 * Thank you for using Cafemis!
+                 * Cafemis kullandığınız için teşekkürler!
                  */
                 "flavor": string;
             };
@@ -6438,15 +6438,15 @@ export interface Locale extends ILocale {
             };
             "_iLoveMisskey": {
                 /**
-                 * I Love Cafemis
+                 * Cafemis'i Seviyorum
                  */
                 "title": string;
                 /**
-                 * Post "I ❤ #Cafemis"
+                 * "I ❤ #Cafemis" gönderisi yap
                  */
                 "description": string;
                 /**
-                 * Cafemis's development team greatly appreciates your support!
+                 * Cafemis'in geliştirme ekibi desteğinizi çok takdir ediyor!
                  */
                 "flavor": string;
             };
@@ -6466,17 +6466,17 @@ export interface Locale extends ILocale {
                  */
                 "title": string;
                 /**
-                 * Keep Cafemis opened for at least 30 minutes
+                 * Cafemis'i en az 30 dakika açık tut
                  */
                 "description": string;
             };
             "_client60min": {
                 /**
-                 * No "Miss" in Cafemis
+                 * Cafemis'te Hiçbir Şey 'Kaçırılmaz'
                  */
                 "title": string;
                 /**
-                 * Keep Cafemis opened for at least 60 minutes
+                 * Cafemis'i en az 60 dakika açık tut
                  */
                 "description": string;
             };
@@ -6712,7 +6712,7 @@ export interface Locale extends ILocale {
             };
             "_tutorialCompleted": {
                 /**
-                 * Cafemis Elementary Course Diploma
+                 * Cafemis İlköğretim Kursu Diploması
                  */
                 "title": string;
                 /**
@@ -6937,7 +6937,7 @@ export interface Locale extends ILocale {
              */
             "alwaysMarkNsfw": string;
             /**
-             * Allow users to edit their avatar or banner
+             * Kullanıcıların avatar veya banner düzenlemelerine izin ver
              */
             "canUpdateBioMedia": string;
             /**
@@ -7017,15 +7017,15 @@ export interface Locale extends ILocale {
              */
             "canImportUserLists": string;
             /**
-             * Can view the bubble timeline
+             * Kabarcık zaman çizelgesini görebilir
              */
             "btlAvailable": string;
             /**
-             * Can import notes
+             * Notları içe aktarabilir
              */
             "canImportNotes": string;
             /**
-             * Maximum number of scheduled notes
+             * Planlanan notların maksimum sayısı
              */
             "scheduleNoteMax": string;
         };
@@ -7055,11 +7055,11 @@ export interface Locale extends ILocale {
              */
             "isSuspended": string;
             /**
-             * Private account
+             * Özel hesap
              */
             "isLocked": string;
             /**
-             * Account is discoverable
+             * Hesap keşfedilebilir
              */
             "isExplorable": string;
             /**
@@ -7160,7 +7160,7 @@ export interface Locale extends ILocale {
          */
         "smtp": string;
         /**
-         * This email address is banned
+         * Bu e-posta adresi yasaklanmıştır
          */
         "banned": string;
     };
@@ -7192,11 +7192,11 @@ export interface Locale extends ILocale {
          */
         "emailSent": ParameterizedString<"email">;
         /**
-         * Your account has been created and is awaiting approval.
+         * Hesabınız oluşturuldu ve onay bekliyor.
          */
         "approvalPending": string;
         /**
-         * Please enter a reason as to why you want to join the instance.
+         * Örneğe katılmak isteme nedeninizi girin.
          */
         "reasonInfo": string;
     };
@@ -7422,7 +7422,7 @@ export interface Locale extends ILocale {
     };
     "_aboutMisskey": {
         /**
-         * Cafemis is open-source software based on Misskey which has been in development by rauf since 2014.
+         * Cafemis, 2014 yılından beri rauf tarafından geliştirilmiş olan Misskey tabanlı açık kaynaklı bir yazılımdır.
          */
         "about": string;
         /**
@@ -7438,15 +7438,15 @@ export interface Locale extends ILocale {
          */
         "source": string;
         /**
-         * Misskey original
+         * Misskey orijinali
          */
         "original": string;
         /**
-         * {name} uses a modified version of the original Cafemis.
+         * {name} orijinal Cafemis'in değiştirilmiş bir sürümünü kullanıyor.
          */
         "thisIsModifiedVersion": ParameterizedString<"name">;
         /**
-         * Translate Cafemis
+         * Cafemis Çevirisi
          */
         "translation": string;
         /**
@@ -7466,23 +7466,23 @@ export interface Locale extends ILocale {
          */
         "projectMembers": string;
         /**
-         * Cafemis original
+         * Cafemis orijinali
          */
         "original_sharkey": string;
         /**
-         * Donate to Cafemis
+         * Cafemis'e Bağış
          */
         "donate_sharkey": string;
         /**
-         * Testers
+         * Testçiler
          */
         "testers": string;
         /**
-         * Misskey Contributors
+         * Misskey Katkıcıları
          */
         "misskeyContributors": string;
         /**
-         * Our lovely Sponsors
+         * Sevgili Sponsorlarımız
          */
         "ourLovelySponsors": string;
     };
@@ -7528,7 +7528,7 @@ export interface Locale extends ILocale {
          */
         "quiet": string;
         /**
-         * Disable warning
+         * Uyarıyı devre dışı bırak
          */
         "disabled": string;
     };
@@ -7578,7 +7578,7 @@ export interface Locale extends ILocale {
          */
         "nameOnly": string;
         /**
-         * Allow boosts and quote outside the channel
+         * Kanalın dışına güçlendime ve alıntılama izni ver
          */
         "allowRenoteToExternal": string;
     };
@@ -7616,7 +7616,7 @@ export interface Locale extends ILocale {
     };
     "_instanceMute": {
         /**
-         * This will mute any notes/boosts from the listed instances, including those of users replying to a user from a muted instance.
+         * Bu, notları/güçlendirmeleri sessize alacak örneklerden gelen kullanıcılar için bir kullanıcıya yanıt veren kullanıcı hesapları da dahil ediyor.
          */
         "instanceMuteDescription": string;
         /**
@@ -7819,7 +7819,7 @@ export interface Locale extends ILocale {
              */
             "mentionMe": string;
             /**
-             * Boost
+             * Güçlendirme
              */
             "renote": string;
             /**
@@ -7948,11 +7948,11 @@ export interface Locale extends ILocale {
          */
         "driveFileDurationWarn": string;
         /**
-         * Long audio may disrupt using Cafemis. Still continue?
+         * Uzun ses dosyaları Cafemis kullanımını bozabilir. Yine de devam edilsin mi?
          */
         "driveFileDurationWarnDescription": string;
         /**
-         * The audio couldn't be loaded. Please make sure you selected an audio file.
+         * Ses yüklenemedi. Lütfen bir ses dosyası seçtiğinizden emin olun.
          */
         "driveFileError": string;
     };
@@ -8152,7 +8152,7 @@ export interface Locale extends ILocale {
          */
         "backupCodeUsedWarning": string;
         /**
-         * Click here for a detailed guide
+         * Detaylı kılavuz için burayı tıklayın
          */
         "moreDetailedGuideHere": string;
     };
@@ -8502,11 +8502,11 @@ export interface Locale extends ILocale {
          */
         "write:report-abuse": string;
         /**
-         * View your list of scheduled notes
+         * Planlanmış notlar listenizi görüntüleyin
          */
         "read:notes-schedule": string;
         /**
-         * Compose or delete scheduled notes
+         * Planlanmış notlar oluştur veya sil
          */
         "write:notes-schedule": string;
     };
@@ -8560,7 +8560,7 @@ export interface Locale extends ILocale {
          */
         "byClickingYouWillBeRedirectedToThisUrl": string;
         /**
-         * Allowed
+         * İzinli
          */
         "allowed": string;
     };
@@ -8736,7 +8736,7 @@ export interface Locale extends ILocale {
          */
         "birthdayFollowings": string;
         /**
-         * Search
+         * Ara
          */
         "search": string;
     };
@@ -8844,7 +8844,7 @@ export interface Locale extends ILocale {
          */
         "remainingSeconds": ParameterizedString<"s">;
         /**
-         * Multiple choices
+         * Birden çok seçenek
          */
         "multiple": string;
     };
@@ -8996,23 +8996,23 @@ export interface Locale extends ILocale {
          */
         "followedMessageDescriptionForLockedAccount": string;
         /**
-         * Update banner
+         * Afişi güncelle
          */
         "updateBanner": string;
         /**
-         * Remove banner
+         * Afişi kaldır
          */
         "removeBanner": string;
         /**
-         * Change background
+         * Arka planı değiştir
          */
         "changeBackground": string;
         /**
-         * Update background
+         * Arka planı güncelle
          */
         "updateBackground": string;
         /**
-         * Remove background
+         * Arka planı kaldır
          */
         "removeBackground": string;
     };
@@ -9176,7 +9176,7 @@ export interface Locale extends ILocale {
          */
         "global": string;
         /**
-         * Bubble
+         * Kabarcık
          */
         "bubble": string;
     };
@@ -9421,7 +9421,7 @@ export interface Locale extends ILocale {
              */
             "dynamic": string;
             /**
-             * This block type has been removed. Please use {play} from now on.
+             * Bu blok türü kaldırıldı. Lütfen bundan sonra {play} kullanın.
              */
             "dynamicDescription": ParameterizedString<"play">;
             /**
@@ -9476,7 +9476,7 @@ export interface Locale extends ILocale {
          */
         "youGotQuote": ParameterizedString<"name">;
         /**
-         * Boost from {name}
+         * {name} tarafından güçlendirildi
          */
         "youRenoted": ParameterizedString<"name">;
         /**
@@ -9540,7 +9540,7 @@ export interface Locale extends ILocale {
          */
         "likedBySomeUsers": ParameterizedString<"n">;
         /**
-         * Boosted by {n} users
+         * {n} kullanıcı tarafından güçlendirildi
          */
         "renotedBySomeUsers": ParameterizedString<"n">;
         /**
@@ -9581,7 +9581,7 @@ export interface Locale extends ILocale {
              */
             "reply": string;
             /**
-             * Boosts
+             * Güçlendirmeler
              */
             "renote": string;
             /**
@@ -9629,15 +9629,15 @@ export interface Locale extends ILocale {
              */
             "app": string;
             /**
-             * Edits
+             * Düzenlemeler
              */
             "edited": string;
             /**
-             * Posting scheduled note failed
+             * Planlanmış not gönderimi başarısız oldu
              */
             "scheduledNoteFailed": string;
             /**
-             * Scheduled note was posted
+             * Planlanmış not gönderildi
              */
             "scheduledNotePosted": string;
         };
@@ -9651,20 +9651,20 @@ export interface Locale extends ILocale {
              */
             "reply": string;
             /**
-             * Boost
+             * Güçlendirme
              */
             "renote": string;
         };
         /**
-         * Note got edited
+         * Not düzenlendi
          */
         "edited": string;
         /**
-         * Posting scheduled note failed
+         * Planlanan notun gönderimi başarısız oldu
          */
         "scheduledNoteFailed": string;
         /**
-         * Scheduled Note was posted
+         * Planlanan Not gönderildi
          */
         "scheduledNotePosted": string;
     };
@@ -9791,7 +9791,7 @@ export interface Locale extends ILocale {
              */
             "roleTimeline": string;
             /**
-             * Following
+             * Takip edilen
              */
             "following": string;
         };
@@ -9869,7 +9869,7 @@ export interface Locale extends ILocale {
              */
             "reply": string;
             /**
-             * When boosted
+             * Güçlendirme yapıldığında
              */
             "renote": string;
             /**
@@ -9887,7 +9887,7 @@ export interface Locale extends ILocale {
              */
             "abuseReport": string;
             /**
-             * When resolved abuse reports
+             * Şikayet bildirimleri çözüldüğünde
              */
             "abuseReportResolved": string;
             /**
@@ -9937,11 +9937,11 @@ export interface Locale extends ILocale {
                 "webhook": string;
                 "_captions": {
                     /**
-                     * Send an email to the moderators when an abuse report is received.
+                     * Bir şikayet raporu alındığında moderatörlere bir e-posta gönder.
                      */
                     "mail": string;
                     /**
-                     * Send a notification to the SystemWebhook when an abuse report is received or resolved.
+                     * Bir şikayet raporu alındığında veya çözüldüğünde SistemWebhook'a bir bildirim gönder.
                      */
                     "webhook": string;
                 };
@@ -10158,23 +10158,23 @@ export interface Locale extends ILocale {
          */
         "deleteGalleryPost": string;
         /**
-         * Approved
+         * Onaylandı
          */
         "approve": string;
         /**
-         * Set remote instance as NSFW
+         * Uzak örneği NSFW olarak ayarla
          */
         "setRemoteInstanceNSFW": string;
         /**
-         * Set remote instance as NSFW
+         * Uzak örneği NSFW olarak ayarlamayı kaldır
          */
         "unsetRemoteInstanceNSFW": string;
         /**
-         * Rejected reports from remote instance
+         * Uzak örnek raporlarını reddetti
          */
         "rejectRemoteInstanceReports": string;
         /**
-         * Accepted reports from remote instance
+         * Uzak örnek raporlarını kabul etti
          */
         "acceptRemoteInstanceReports": string;
     };
@@ -10361,7 +10361,7 @@ export interface Locale extends ILocale {
              */
             "title": string;
             /**
-             * Stop avatar image animation. Animated images can be larger in file size than normal images, potentially leading to further reductions in data traffic.
+             * Avatar görüntüsü animasyonunu durdurun. Animasyonlu görüntüler, normal görüntülerden daha büyük dosya boyutuna sahip olabilir, bu nedenle veri trafiğini daha da azaltabilir.
              */
             "description": string;
         };
@@ -10598,7 +10598,7 @@ export interface Locale extends ILocale {
          */
         "timeout": string;
         /**
-         * If it takes longer than this value to get the preview, the preview won't be generated.
+         * Ön izlemeyi almak bu değerden uzun süresi alırsa, ön izleme oluşturulmayacaktır.
          */
         "timeoutDescription": string;
         /**
@@ -10610,7 +10610,7 @@ export interface Locale extends ILocale {
          */
         "maximumContentLengthDescription": string;
         /**
-         * Generate the preview only if we can get Content-Length
+         * Yalnızca içeriği alabiliyorsak önizleme oluştur.
          */
         "requireContentLength": string;
         /**
@@ -10626,15 +10626,15 @@ export interface Locale extends ILocale {
          */
         "userAgentDescription": string;
         /**
-         * Endpoint for proxy to generate previews
+         * Önizlemeler oluşturmak için proxy son noktası
          */
         "summaryProxy": string;
         /**
-         * Generate previews using Summaly Proxy, instead of Cafemis itself.
+         * Cafemis yerine Summaly Proxy kullanarak önizlemeler oluşturun.
          */
         "summaryProxyDescription": string;
         /**
-         * The following parameters are sent to the proxy as a query string. If the proxy does not support them, the values are ignored.
+         * Proxy'ye sorgu dizimi olarak gönderilen aşağıdaki parametreler vardır. Eğer proxy bunları desteklemiyorsa, değerler dikkate alınmaz.
          */
         "summaryProxyDescription2": string;
     };
@@ -10761,479 +10761,479 @@ export interface Locale extends ILocale {
      */
     "acknowledgeNotesAndEnable": string;
     /**
-     * Approvals
+     * Onaylar
      */
     "approvals": string;
     /**
-     * Open remote profile
+     * Uzaktan profili aç
      */
     "openRemoteProfile": string;
     /**
-     * Link to external site warning exclusion list
+     * Dış sitelerin bağlantı uyarısını dışlama listesi
      */
     "trustedLinkUrlPatterns": string;
     /**
-     * Separate with spaces for an AND condition or with line breaks for an OR condition. Using surrounding keywords with slashes will turn them into a regular expression. If you write only the domain name, it will be a backward match.
+     * AND koşulu için boşlukla, OR koşulu için satır aralarına ayırın. Çevre anahtar kelimelerini eğik çizgiler ile kullanmak onları bir düzenli ifade haline getirir. Sadece alan adını yazarsanız, bu geriye dönük bir eşleşme olacaktır.
      */
     "trustedLinkUrlPatternsDescription": string;
     /**
-     * Mutuals
+     * Karşılıklı takipler
      */
     "mutuals": string;
     /**
-     * Private account
+     * Özel hesap
      */
     "isLocked": string;
     /**
-     * Administrator
+     * Yönetici
      */
     "isAdmin": string;
     /**
-     * Bot user
+     * Bot kullanıcısı
      */
     "isBot": string;
     /**
-     * Open
+     * Aç
      */
     "open": string;
     /**
-     * Destination address
+     * Hedef adres
      */
     "emailDestination": string;
     /**
-     * Date
+     * Tarih
      */
     "date": string;
     /**
-     * Quoted.
+     * Alıntı yapıldı.
      */
     "quoted": string;
     /**
-     * Unboosted.
+     * Güçlendirme kaldırıldı.
      */
     "rmboost": string;
     /**
-     * Muted
+     * Sessize alındı
      */
     "muted": string;
     /**
-     * Boosts muted
+     * Güçlendirmeler sessize alındı
      */
     "renoteMuted": string;
     /**
-     * Mark all media from user as NSFW
+     * Kullanıcının tüm medyasını NSFW olarak işaretle
      */
     "markAsNSFW": string;
     /**
-     * Mark as NSFW
+     * NSFW olarak işaretle
      */
     "markInstanceAsNSFW": string;
     /**
-     * Are you sure that you want to mark all media from this account as NSFW?
+     * Bu hesabın tüm medyasını NSFW olarak işaretlemek istediğinize emin misiniz?
      */
     "nsfwConfirm": string;
     /**
-     * Are you sure that you want to unmark all media from this account as NSFW?
+     * Bu hesabın tüm medyasını NSFW işaretini kaldırmak istediğinize emin misiniz?
      */
     "unNsfwConfirm": string;
     /**
-     * Are you sure that you want to approve this account?
+     * Bu hesabı onaylamak istediğinize emin misiniz?
      */
     "approveConfirm": string;
     /**
-     * Speak as a cat
+     * Kedi olarak konuş
      */
     "flagSpeakAsCat": string;
     /**
-     * Your posts will get nyanified when in cat mode. If this isn't working, then please check that you dont have 'Disable cat speak' on under General/Note Display
+     * Kedi modundayken gönderileriniz miyav gibi olacaktır. Çalışmıyorsa, Genel/Not Ekranında 'Kedi konuşmasını devre dışı bırak' seçeneğini kapattığınızdan emin olun.
      */
     "flagSpeakAsCatDescription": string;
     /**
-     * Reject reports from this instance
+     * Bu örnekten gelen raporları reddet
      */
     "rejectReports": string;
     /**
-     * This host is blocked implicitly because a base domain is blocked. To unblock this host, first unblock the base domain(s).
+     * Bu ana bilgisayar, bir temel alan adı engellendiği için dolaylı olarak engellenmiştir. Bu ana bilgisayarı engelden kaldırmak için önce temel alan adını (alan adlarını) engelden kaldırın.
      */
     "blockedByBase": string;
     /**
-     * This host is silenced implicitly because a base domain is silenced. To un-silence this host, first un-silence the base domain(s).
+     * Bu ana bilgisayar, bir temel alan adı sessizleştirildiği için dolaylı olarak sessize alınmıştır. Bu ana bilgisayarı sessizlikten kaldırmak için önce temel alan adını (alan adlarını) sessizlikten kaldırın.
      */
     "silencedByBase": string;
     /**
-     * This host's media is silenced implicitly because a base domain's media is silenced. To un-silence this host, first un-silence the base domain(s).
+     * Bu ana bilgisayarın medyası, bir temel alan adının medyası sessizleştirildiği için dolaylı olarak sessize alınmıştır. Bu ana bilgisayarın medyasını sessizlikten kaldırmak için önce temel alan adının medyasını sessizlikten kaldırın.
      */
     "mediaSilencedByBase": string;
     /**
-     * Search drive
+     * Sürücüde ara
      */
     "driveSearchbarPlaceholder": string;
     /**
-     * Background
+     * Arka plan
      */
     "background": string;
     /**
-     * Show content for all replies
+     * Tüm yanıtlardaki içeriği göster
      */
     "expandAllCws": string;
     /**
-     * Hide content for all replies
+     * Tüm yanıtlardaki içeriği gizle
      */
     "collapseAllCws": string;
     /**
-     * Don't use drawer-style menus
+     * Çekmece tarzı menüleri kullanma
      */
     "disableDrawer": string;
     /**
-     * Corner roundness
+     * Köşe yuvarlama
      */
     "cornerRadius": string;
     /**
-     * Warn you when you forget to put alt text
+     * Alt metin eklemeyi unutursanız sizi uyarır
      */
     "warnForMissingAltText": string;
     /**
-     * Use DeepLX-JS (No Auth Key)
+     * DeepLX-JS kullan (Kimlik Doğrulama Anahtarı Yok)
      */
     "deeplFreeMode": string;
     /**
-     * Need Help? Check our documentation to know how to setup DeepLX-JS.
+     * Yardım mı gerekiyor? DeepLX-JS kurulumuyla ilgili bilgi almak için belgelerimize göz atın.
      */
     "deeplFreeModeDescription": string;
     /**
-     * Deletion of all files queued
+     * Silinen tüm dosyalar sıraya alındı
      */
     "deleteAllFilesQueued": string;
     /**
-     * This is a system account
+     * Bu bir sistem hesabıdır
      */
     "systemAccountTitle": string;
     /**
-     * This account is created and managed automatically by the system, and cannot be logged into.
+     * Bu hesap sistem tarafından otomatik olarak oluşturulup yönetilmektedir ve oturum açılamaz.
      */
     "systemAccountDescription": string;
     /**
-     * post is hidden by a filter
+     * gönderi bir filtre tarafından gizlenmiştir
      */
     "postFiltered": string;
     /**
-     * Enable favicon notification dot
+     * Favicon bildirim noktası etkinleştir
      */
     "enableFaviconNotificationDot": string;
     /**
-     * Check if the notification dot works on your instance
+     * Bildirim noktasının örneğinizde çalışıp çalışmadığını kontrol edin
      */
     "verifyNotificationDotWorkingButton": string;
     /**
-     * Unfortunately, this instance does not support the notification dot feature at this time.
+     * Ne yazık ki, bu örnek şu anda bildirim noktası özelliğini desteklemiyor.
      */
     "notificationDotNotWorking": string;
     /**
-     * The notification dot is functioning properly on this instance.
+     * Bildirim noktası bu örnekte düzgün çalışıyor.
      */
     "notificationDotWorking": string;
     /**
-     * If the notification dot doesn't work, ask an admin to check our documentation {link}
+     * Bildirim noktası çalışmıyorsa, bir yöneticiye belgelerimize {link} göz atmasını rica edin.
      */
     "notificationDotNotWorkingAdvice": ParameterizedString<"link">;
     /**
-     * Forward report to remote instance
+     * Raporu uzak örneğe ilet
      */
     "forwardReport": string;
     /**
-     * Instead of your account, an anonymous system account will be displayed as reporter at the remote instance.
+     * Uzak örnekte raporlayan olarak hesabınız yerine anonim bir sistem hesabı gözükecek.
      */
     "forwardReportIsAnonymous": string;
     /**
-     * Mark report as resolved
+     * Şikayeti çözüldü olarak işaretle
      */
     "abuseMarkAsResolved": string;
     /**
-     * Cafemis specific changes are translated in its own {link}.
+     * Cafemis'e özgü değişiklikler kendi {link} içinde çevrilmiştir.
      */
     "i18nInfoSharkey": ParameterizedString<"link">;
     /**
-     * Show instance ticker on replies
+     * Yanıtlarda örnek biletini göster
      */
     "showTickerOnReplies": string;
     /**
-     * Disable cat speak
+     * Kedi konuşmasını devre dışı bırak
      */
     "disableCatSpeak": string;
     /**
-     * Search Engine For Search MFM
+     * MFM Aramalarında Arama Motoru
      */
     "searchEngine": string;
     /**
-     * Other
+     * Diğer
      */
     "searchEngineOther": string;
     /**
-     * The custom URI must be input in the format like "https://www.google.com/search?q=\{query}" or "https://www.google.com/search?q=%s".
+     * "https://www.google.com/search?q=\{query}" veya "https://www.google.com/search?q=%s" formatında özel URI girilmelidir.
      */
     "searchEngineCustomURIDescription": string;
     /**
-     * Custom URI
+     * Özel URI
      */
     "searchEngineCusomURI": string;
     /**
-     * Make public notes not indexable
+     * Genel notları indekslenemez yap
      */
     "makeIndexable": string;
     /**
-     * Stop note search from indexing your public notes.
+     * Genel notlarınızın indekslenmesini durdurun.
      */
     "makeIndexableDescription": string;
     /**
-     * Enable RSS feed
+     * RSS akışını etkinleştir
      */
     "enableRss": string;
     /**
-     * Generate an RSS feed containing your basic profile details and public notes. Users can subscribe to the feed without a follow request or approval.
+     * Temel profil bilgilerinizi ve genel notlarınızı içeren bir RSS akışı oluşturur. Kullanıcılar, takip isteği veya onayı olmadan bu akışa abone olabilir.
      */
     "enableRssDescription": string;
     /**
-     * Require approval for new users
+     * Yeni kullanıcılar için onay gerektir
      */
     "approvalRequiredForSignup": string;
     /**
-     * Confirm your vote for "{choice}"?
-     * 　You can choose more options after confirmation.
+     * "{choice}" için oyunu onayla?
+     * 　Onaylandıktan sonra daha fazla seçenek seçebilirsiniz.
      */
     "voteConfirmMulti": ParameterizedString<"choice">;
     /**
-     * There are users awaiting approval.
+     * Onay bekleyen kullanıcılar var.
      */
     "pendingUserApprovals": string;
     /**
-     * Approve
+     * Onayla
      */
     "approveAccount": string;
     /**
-     * Deny & Delete
+     * Reddet & Sil
      */
     "denyAccount": string;
     /**
-     * Approved
+     * Onaylandı
      */
     "approved": string;
     /**
-     * Not Approved
+     * Onaylanmadı
      */
     "notApproved": string;
     /**
-     * Approval Status
+     * Onay Durumu
      */
     "approvalStatus": string;
     /**
-     * Number of replies in a thread
+     * Bir başlıktaki yanıt sayısı
      */
     "numberOfReplies": string;
     /**
-     * Increasing this number will display more replies. Setting this too high can cause replies to be cramped and unreadable.
+     * Bu sayıyı artırmak daha fazla yanıt gösterilmesine neden olacaktır. Çok yüksek ayarlanması yanıtlarda sıkışıklık ve okunaksızlık yaratabilir.
      */
     "numberOfRepliesDescription": string;
     /**
-     * Boost Settings
+     * Güçlendirme Ayarları
      */
     "boostSettings": string;
     /**
-     * Show Visibility Selector
+     * Güçlendirmede Görünürlük Seçici Göster
      */
     "showVisibilitySelectorOnBoost": string;
     /**
-     * Shows the visiblity selector if enabled when clicking boost, if disabled it will use the default visiblity defined below and the selector will not show up.
+     * Etkinleştirildiğinde güçlendirmeye tıkladığınızda görünürlük seçici gösterilir, devre dışı bırakıldığında, aşağıda tanımlanmış varsayılan görünürlüğü kullanır ve seçici gösterilmez.
      */
     "showVisibilitySelectorOnBoostDescription": string;
     /**
-     * Default boost visibility
+     * Varsayılan güçlendirme görünürlüğü
      */
     "visibilityOnBoost": string;
     /**
-     * Default like emoji
+     * Varsayılan beğeni emoji
      */
     "defaultLike": string;
     /**
-     * You can also support {host} directly by donating to your instance administration.
+     * {host} örnek yönetimine doğrudan bağış yaparak da destek olabilirsiniz.
      */
     "pleaseDonateInstance": ParameterizedString<"host">;
     /**
-     * Cancel
+     * İptal et
      */
     "thisPostIsMissingAltTextCancel": string;
     /**
-     * Post anyway
+     * Yine de gönder
      */
     "thisPostIsMissingAltTextIgnore": string;
     /**
-     * One of the files attached to this post is missing alt text. Please ensure all the attachments have alt text.
+     * Bu gönderiye eklenen dosyalardan biri alt metinden yoksun. Lütfen tüm eklerin alt metne sahip olduğundan emin olun.
      */
     "thisPostIsMissingAltText": string;
     /**
-     * Collapse notes replied to
+     * Yanıtlandığı notları daralt
      */
     "collapseNotesRepliedTo": string;
     /**
-     * Collapse files
+     * Dosyaları daralt
      */
     "collapseFiles": string;
     /**
-     * Uncollapse CWs on notes
+     * Notlardaki CW'leri genişletme
      */
     "uncollapseCW": string;
     /**
-     * Always expand long notes
+     * Uzun notları her zaman genişlet
      */
     "expandLongNote": string;
     /**
-     * Load conversation on replies
+     * Yanıtlarda konuşmayı yükle
      */
     "autoloadConversation": string;
     /**
-     * This instance is only accepting users who specify a reason for registration.
+     * Bu örnek, kayıt için bir neden belirten kullanıcıları kabul etmektedir.
      */
     "approvalRequiredToRegister": string;
     /**
-     * Cat friend :3
+     * Kedi dostu :3
      */
     "oneko": string;
     /**
-     * Enable Achievements
+     * Başarıları Etkinleştir
      */
     "enableAchievements": string;
     /**
-     * Turning this off will disable the achievement system
+     * Bunu kapatmak başarı sistemi devre dışı bırakacaktır
      */
     "turnOffAchievements": string;
     /**
-     * Populate Hashtags with Bots
+     * Hashtaglarla Botları Popüler Yap
      */
     "enableBotTrending": string;
     /**
-     * Turning this off will stop Bots from populating Hashtags
+     * Bunu kapatmak Botların Hashtag'larda popüler olmasını durduracaktır
      */
     "turnOffBotTrending": string;
     /**
-     * Click to open notes
+     * Notları açmak için tıklayın
      */
     "clickToOpen": string;
     /**
-     * Show bots in timeline
+     * Zaman çizelgesinde botları göster
      */
     "showBots": string;
     /**
-     * Donate
+     * Bağış
      */
     "donation": string;
     /**
-     * Donation URL
+     * Bağış URL'si
      */
     "donationUrl": string;
     /**
-     * Show Below Avatar
+     * Avatarın Altında Göster
      */
     "showBelowAvatar": string;
     /**
-     * Break following relationships
+     * Takip ilişkilerini kes
      */
     "severAllFollowRelations": string;
     /**
-     * Really break all follow relationships? This is irreversible! This will break {followingCount} following and {followersCount} follower relations on {instanceName}!
+     * Gerçekten tüm takip ilişkilerini kesmek mi istiyorsunuz? Bu geri alınamaz! {instanceName}'da {followingCount} takip ve {followersCount} takipçi ilişkisini kıracaktır!
      */
-    "severAllFollowRelationsConfirm": ParameterizedString<"followingCount" | "followersCount" | "instanceName">;
+    "severAllFollowRelationsConfirm": ParameterizedString<"instanceName" | "followingCount" | "followersCount">;
     /**
-     * Severing all follow relations with {host} queued.
+     * {host} ile tüm takip ilişkilerini kesme sıraya alındı.
      */
     "severAllFollowRelationsQueued": ParameterizedString<"host">;
     /**
-     * Pending follow requests
+     * Bekleyen takip istekleri
      */
     "pendingFollowRequests": string;
     /**
-     * Show quotes
+     * Alıntıları göster
      */
     "showQuotes": string;
     /**
-     * Show replies
+     * Yanıtları göster
      */
     "showReplies": string;
     /**
-     * Show non-public
+     * Halka açık olmayanları göster
      */
     "showNonPublicNotes": string;
     /**
-     * Allow clicking on pop-up notifications
+     * Açılır bildirimlere tıklamayı etkinleştir
      */
     "allowClickingNotifications": string;
     /**
-     * Pinned
+     * Sabitlenmiş
      */
     "pinnedOnly": string;
     /**
-     * Blocking you
+     * Seni engelliyor
      */
     "blockingYou": string;
     /**
-     * Show warning when opening external URLs
+     * Dış URL'ler açılırken uyarı göster
      */
     "warnExternalUrl": string;
     /**
-     * Flash
+     * Flaş
      */
     "flash": string;
     "_flash": {
         /**
-         * Flash Content Hidden
+         * Flaş İçeriği Gizlenmiş
          */
         "contentHidden": string;
         /**
-         * Powered by Ruffle.
+         * Ruffle tarafından desteklenmektedir.
          */
         "poweredByRuffle": string;
         /**
-         * Always be wary of arbitrary code execution!
+         * Rastgele kod yürütmeden her zaman şüphe duyun!
          */
         "arbitraryCodeExecutionWarning": string;
         /**
-         * Flash Content Failed To Load:
+         * Flaş İçeriği Yüklenemedi:
          */
         "failedToLoad": string;
         /**
-         * Flash Content Is Loading
+         * Flaş İçeriği Yükleniyor
          */
         "isLoading": string;
         /**
-         * Loading Ruffle player
+         * Ruffle oynatıcısı yükleniyor
          */
         "loadingRufflePlayer": string;
         /**
-         * Loading Flash file
+         * Flaş dosyası yükleniyor
          */
         "loadingFlashFile": string;
         /**
-         * raw.esm.sh could not be accessed, meaning this instance's Content Security Policy is likely out of date. Please contact your instance administrators.
+         * raw.esm.sh erişilemedi, bu, bu örneğin İçerik Güvenliği Politikasının büyük ihtimalle güncel olmadığını gösteriyor. Lütfen örnek yöneticilerinize başvurun.
          */
         "cspError": string;
     };
     "_mfm": {
         /**
-         * This is not a widespread feature, it may not display properly on most other fedi software, including other Misskey forks
+         * Bu yaygın bir özellik değildir, çoğu diğer fedi yazılımında, dahil olmak üzere diğer Misskey çatallarında düzgün görüntülenmeyebilir
          */
         "uncommonFeature": string;
         /**
-         * MFM is a markup language used on Misskey, Cafemis, Firefish, Akkoma, and more that can be used in many places. Here you can view a list of all available MFM syntax.
+         * MFM, Misskey, Cafemis, Firefish, Akkoma ve daha birçok yazılımda kullanılabilen bir işaretleme dilidir. Burada mevcut tüm MFM söz dizimlerinin bir listesini görebilirsiniz.
          */
         "intro": string;
         /**
-         * Cafemis expands the world of the Fediverse
+         * Cafemis Fediverse dünyasını genişletiyor
          */
         "dummy": string;
         /**
-         * Mention
+         * Bahsetme
          */
         "mention": string;
         /**
-         * You can specify a user by using an At-Symbol and a username.
+         * Bir kullanıcıyı, bir At Sembolü ve kullanıcı adı kullanarak belirtebilirsiniz.
          */
         "mentionDescription": string;
         /**
@@ -11241,7 +11241,7 @@ export interface Locale extends ILocale {
          */
         "hashtag": string;
         /**
-         * You can specify a hashtag using a number sign and text.
+         * Bir numara işareti ve metin kullanarak bir hashtag belirtebilirsiniz.
          */
         "hashtagDescription": string;
         /**
@@ -11249,302 +11249,302 @@ export interface Locale extends ILocale {
          */
         "url": string;
         /**
-         * URLs can be displayed.
+         * URL'ler görüntülenebilir.
          */
         "urlDescription": string;
         /**
-         * Link
+         * Bağlantı
          */
         "link": string;
         /**
-         * Specific parts of text can be displayed as a URL.
+         * Metnin belirli kısımları bir URL olarak gösterilebilir.
          */
         "linkDescription": string;
         /**
-         * Bold
+         * Kalın
          */
         "bold": string;
         /**
-         * Highlights letters by making them thicker.
+         * Harfleri kalınlaştırarak vurgular.
          */
         "boldDescription": string;
         /**
-         * Small
+         * Küçük
          */
         "small": string;
         /**
-         * Displays content small and thin.
+         * İçeriği küçük ve ince gösterir.
          */
         "smallDescription": string;
         /**
-         * Center
+         * Merkez
          */
         "center": string;
         /**
-         * Displays content centered.
+         * İçeriği merkezle gösterir.
          */
         "centerDescription": string;
         /**
-         * Code (Inline)
+         * Kod (Satır içi)
          */
         "inlineCode": string;
         /**
-         * Displays inline syntax highlighting for (program) code.
+         * (Program) kodunun satır içi sözdizimi vurgulamasını gösterir.
          */
         "inlineCodeDescription": string;
         /**
-         * Code (Block)
+         * Kod (Blok)
          */
         "blockCode": string;
         /**
-         * Displays syntax highlighting for multi-line (program) code in a block.
+         * (Program) kodunun çok satırlı sözdizimi vurgulamasını bir blok halinde gösterir.
          */
         "blockCodeDescription": string;
         /**
-         * Math (Inline)
+         * Matematik (Satır içi)
          */
         "inlineMath": string;
         /**
-         * Display math formulas (KaTeX) in-line
+         * Satır içi matematik formülleri (KaTeX) gösterir
          */
         "inlineMathDescription": string;
         /**
-         * Math (Block)
+         * Matematik (Blok)
          */
         "blockMath": string;
         /**
-         * Display math formulas (KaTeX) in a block
+         * Blok halinde matematik formülleri (KaTeX) gösterir
          */
         "blockMathDescription": string;
         /**
-         * Quote
+         * Alıntı
          */
         "quote": string;
         /**
-         * Displays content as a quote.
+         * İçeriği alıntı olarak gösterir.
          */
         "quoteDescription": string;
         /**
-         * Custom Emoji
+         * Özel Emoji
          */
         "emoji": string;
         /**
-         * By surrounding a custom emoji name with colons, custom emoji can be displayed.
+         * Bir özel emoji adını iki nokta üst üste ile çevreleyerek, özel emoji görüntülenebilir.
          */
         "emojiDescription": string;
         /**
-         * Search
+         * Ara
          */
         "search": string;
         /**
-         * Displays a search box with pre-entered text.
+         * Önceden girilmiş metinle bir arama kutusu gösterir.
          */
         "searchDescription": string;
         /**
-         * Flip
+         * Çevirme
          */
         "flip": string;
         /**
-         * Flips content horizontally or vertically.
+         * İçeriği yatay veya dikey olarak çevirir.
          */
         "flipDescription": string;
         /**
-         * Animation (Jelly)
+         * Animasyon (Jelly)
          */
         "jelly": string;
         /**
-         * Gives content a jelly-like animation.
+         * İçeriğe jöle benzeri bir animasyon verir.
          */
         "jellyDescription": string;
         /**
-         * Animation (Tada)
+         * Animasyon (Tada)
          */
         "tada": string;
         /**
-         * Gives content a "Tada!"-like animation.
+         * İçeriğe "Tada!" benzeri bir animasyon verir.
          */
         "tadaDescription": string;
         /**
-         * Animation (Jump)
+         * Animasyon (Zıplama)
          */
         "jump": string;
         /**
-         * Gives content a jumping animation.
+         * İçeriğe zıplama animasyonu verir.
          */
         "jumpDescription": string;
         /**
-         * Animation (Bounce)
+         * Animasyon (Zıplayış)
          */
         "bounce": string;
         /**
-         * Gives content a bouncy animation.
+         * İçeriğe sekme animasyonu verir.
          */
         "bounceDescription": string;
         /**
-         * Animation (Shake)
+         * Animasyon (Titreme)
          */
         "shake": string;
         /**
-         * Gives content a shaking animation.
+         * İçeriğe titreme animasyonu verir.
          */
         "shakeDescription": string;
         /**
-         * Animation (Twitch)
+         * Animasyon (Kıvılcım)
          */
         "twitch": string;
         /**
-         * Gives content a strongly twitching animation.
+         * İçeriğe şiddetli sarsılma animasyonu verir.
          */
         "twitchDescription": string;
         /**
-         * Animation (Spin)
+         * Animasyon (Dönüş)
          */
         "spin": string;
         /**
-         * Gives content a spinning animation.
+         * İçeriğe dönme animasyonu verir.
          */
         "spinDescription": string;
         /**
-         * Big
+         * Büyük
          */
         "x2": string;
         /**
-         * Displays content bigger.
+         * İçeriği daha büyük gösterir.
          */
         "x2Description": string;
         /**
-         * Very big
+         * Çok büyük
          */
         "x3": string;
         /**
-         * Displays content even bigger.
+         * İçeriği daha da büyük gösterir.
          */
         "x3Description": string;
         /**
-         * Unbelievably big
+         * İnanılmaz büyük
          */
         "x4": string;
         /**
-         * Displays content even bigger than bigger than big.
+         * İçeriği büyükten de büyük gösterir.
          */
         "x4Description": string;
         /**
-         * Blur
+         * Bulanıklaştırma
          */
         "blur": string;
         /**
-         * Blurs content. It will be displayed clearly when hovered over.
+         * İçeriği bulanıklaştırır. Üzerine gelindiğinde net bir şekilde görüntülenir.
          */
         "blurDescription": string;
         /**
-         * Font
+         * Yazı tipi
          */
         "font": string;
         /**
-         * Sets the font to display content in.
+         * İçeriğin görüntüleneceği yazı tipini ayarlar.
          */
         "fontDescription": string;
         /**
-         * Rainbow
+         * Gökkuşağı
          */
         "rainbow": string;
         /**
-         * Makes the content appear in rainbow colors.
+         * İçeriğin gökkuşağı renklerinde görünmesini sağlar.
          */
         "rainbowDescription": string;
         /**
-         * Sparkle
+         * Parlayan
          */
         "sparkle": string;
         /**
-         * Gives content a sparkling particle effect.
+         * İçeriğe parlak parçacık efekti verir.
          */
         "sparkleDescription": string;
         /**
-         * Rotate
+         * Döndürme
          */
         "rotate": string;
         /**
-         * Turns content by a specified angle.
+         * İçeriği belirtilen bir açıyla döndürür.
          */
         "rotateDescription": string;
         /**
-         * Position
+         * Konum
          */
         "position": string;
         /**
-         * Move content by a specified amount.
+         * İçeriği belirtilen miktarda taşır.
          */
         "positionDescription": string;
         /**
-         * Crop
+         * Kesmek
          */
         "crop": string;
         /**
-         * Crop content.
+         * İçeriği kırpar.
          */
         "cropDescription": string;
         /**
-         * Follow Mouse
+         * Fareyi Takip Et
          */
         "followMouse": string;
         /**
-         * Content will follow the mouse. On mobile it will follow wherever the user taps.
+         * İçerik fareyi takip eder. Mobilde, kullanıcının dokunduğu yere gider.
          */
         "followMouseDescription": string;
         /**
-         * Scale
+         * Ölçek
          */
         "scale": string;
         /**
-         * Scale content by a specified amount.
+         * İçeriği belirtilen miktarda ölçeklendirin.
          */
         "scaleDescription": string;
         /**
-         * Foreground color
+         * Ön plan rengi
          */
         "foreground": string;
         /**
-         * Change the foreground color of text.
+         * Metnin ön plan rengini değiştir.
          */
         "foregroundDescription": string;
         /**
-         * Fade
+         * Solma
          */
         "fade": string;
         /**
-         * Fade text in and out.
+         * Metni yavaşça belirsizleştirir ve geri getirir.
          */
         "fadeDescription": string;
         /**
-         * Background color
+         * Arka plan rengi
          */
         "background": string;
         /**
-         * Change the background color of text.
+         * Metnin arka plan rengini değiştir.
          */
         "backgroundDescription": string;
         /**
-         * Plain
+         * Düz
          */
         "plain": string;
         /**
-         * Deactivates the effects of all MFM contained within this MFM effect.
+         * Bu MFM efekti içinde bulunan tüm MFM'nin etkilerini devre dışı bırakır.
          */
         "plainDescription": string;
     };
     "_animatedMFM": {
         /**
-         * Play MFM Animation
+         * MFM Animasyonunu Oynat
          */
         "play": string;
         /**
-         * Stop MFM Animation
+         * MFM Animasyonunu Durdur
          */
         "stop": string;
         "_alert": {
             /**
-             * Animated MFMs could include flashing lights and fast moving text/emojis.
+             * Animasyonlu MF'ler, yanıp sönen ışıklar ve hızlı hareket eden metin/duygular içerebilir.
              */
             "text": string;
             /**
@@ -11555,58 +11555,58 @@ export interface Locale extends ILocale {
     };
     "_dataRequest": {
         /**
-         * Request Data
+         * Veri İsteği
          */
         "title": string;
         /**
-         * Data requests are only possible every 3 days.
+         * Veri istekleri yalnızca her 3 günde bir mümkündür.
          */
         "warn": string;
         /**
-         * Once the data is ready to download, an email will be sent to the email address registered to this account.
+         * Veriler indirmeye hazır olduğunda, bu hesabın kayıtlı olduğu e-posta adresine bir e-posta gönderilecektir.
          */
         "text": string;
         /**
-         * Request
+         * İstek
          */
         "button": string;
     };
     "_externalNavigationWarning": {
         /**
-         * Navigate to an external site
+         * Dış siteye gidin
          */
         "title": string;
         /**
-         * Leave {host} and go to an external site
+         * {host}'u terk edin ve dış bir siteye gidin
          */
         "description": ParameterizedString<"host">;
         /**
-         * Trust this domain on this device in the future
+         * Bu cihazda bu alan adına güvendiğinizi daha sonra onaylayın
          */
         "trustThisDomain": string;
     };
     /**
-     * Remote followers may have incomplete or outdated activity
+     * Uzaktaki takipçilerin etkinliği eksik veya güncel olmayabilir
      */
     "remoteFollowersWarning": string;
     /**
-     * Select a follow relationship...
+     * Bir takip ilişkisi seçin...
      */
     "selectFollowRelationship": string;
     /**
-     * Schedule a note
+     * Bir notu planla
      */
     "schedulePost": string;
     /**
-     * List of scheduled notes
+     * Planlanmış notların listesi
      */
     "schedulePostList": string;
     /**
-     * Post on
+     * Gönderi zamanı
      */
     "postOn": string;
     /**
-     * Scheduled Notes
+     * Planlanmış Notlar
      */
     "scheduledNotes": string;
 }

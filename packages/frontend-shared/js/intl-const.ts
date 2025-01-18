@@ -20,10 +20,10 @@ try {
 	});
 } catch (err) {
 	console.warn(err);
-	if (_DEV_) console.log('[Intl] Fallback to en-US');
+	if (_DEV_) console.log('[Intl] Fallback to tr-TR');
 
-	// Fallback to en-US
-	_dateTimeFormat = new Intl.DateTimeFormat('en-US', {
+	// Fallback to tr-TR
+	_dateTimeFormat = new Intl.DateTimeFormat('tr-TR', {
 		year: 'numeric',
 		month: 'numeric',
 		day: 'numeric',
@@ -43,9 +43,9 @@ try {
 	_numberFormat = new Intl.NumberFormat(versatileLang);
 } catch (err) {
 	console.warn(err);
-	if (_DEV_) console.log('[Intl] Fallback to en-US');
+	if (_DEV_) console.log('[Intl] Fallback to tr-TR');
 
-	// Fallback to en-US
-	_numberFormat = new Intl.NumberFormat('en-US');
+	// Fallback to tr-TR
+	_numberFormat = new Intl.NumberFormat('tr-TR');
 }
 export const numberFormat = _numberFormat;

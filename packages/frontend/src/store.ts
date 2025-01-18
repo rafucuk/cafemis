@@ -625,7 +625,7 @@ export class ColdDeviceStorage {
 	public static default = {
 		lightTheme,
 		darkTheme,
-		syncDeviceDarkMode: true,
+		syncDeviceDarkMode: false,
 		plugins: [] as Plugin[],
 	};
 
