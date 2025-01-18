@@ -4,294 +4,487 @@ SPDX-License-Identifier: AGPL-3.0-only
 -->
 
 <template>
-<div class="mk-app">
-	<div v-if="!narrow && !isRoot" class="side">
-		<div class="banner" :style="{ backgroundImage: instance.backgroundImageUrl ? `url(${ instance.backgroundImageUrl })` : 'none' }"></div>
-		<div class="dashboard">
-			<MkVisitorDashboard/>
+	<div :class="$style.root">
+		<XSidebar v-if="!isMobile" :class="$style.sidebar"/>
+	
+		<MkStickyContainer ref="contents" :class="$style.contents" style="container-type: inline-size;" @contextmenu.stop="onContextmenu">
+			<template #header>
+				<div>
+					<XAnnouncements v-if="$i"/>
+					<XStatusBars :class="$style.statusbars"/>
+				</div>
+			</template>
+			<RouterView/>
+			<div :class="$style.spacer"></div>
+		</MkStickyContainer>
+	
+		<div v-if="isDesktop && !pageMetadata?.needWideArea" :class="$style.widgets">
+			<XWidgets/>
 		</div>
+	
+		<button v-if="(!isDesktop || pageMetadata?.needWideArea) && !isMobile" :class="$style.widgetButton" class="_button" @click="widgetsShowing = true"><i class="ti ti-apps"></i></button>
+	
+		<div v-if="isMobile" ref="navFooter" :class="$style.nav">
+			<button :class="$style.navButton" class="_button" @click="drawerMenuShowing = true"><i :class="$style.navButtonIcon" class="ti ti-menu-2"></i><span v-if="menuIndicated" :class="$style.navButtonIndicator" class="_blink"><i class="_indicatorCircle"></i></span></button>
+			<button :class="$style.navButton" class="_button" @click="isRoot ? top() : mainRouter.push('/')"><i :class="$style.navButtonIcon" class="ti ti-home"></i></button>
+			<button :class="$style.navButton" class="_button" @click="mainRouter.push('/my/notifications')">
+				<i :class="$style.navButtonIcon" class="ti ti-bell"></i>
+			</button>
+			<button :class="$style.navButton" class="_button" @click="widgetsShowing = true"><i :class="$style.navButtonIcon" class="ti ti-apps"></i></button>
+			<button :class="$style.postButton" class="_button" @click="os.post()"><i :class="$style.navButtonIcon" class="ti ti-pencil"></i></button>
+		</div>
+	
+		<Transition
+			:enterActiveClass="defaultStore.state.animation ? $style.transition_menuDrawerBg_enterActive : ''"
+			:leaveActiveClass="defaultStore.state.animation ? $style.transition_menuDrawerBg_leaveActive : ''"
+			:enterFromClass="defaultStore.state.animation ? $style.transition_menuDrawerBg_enterFrom : ''"
+			:leaveToClass="defaultStore.state.animation ? $style.transition_menuDrawerBg_leaveTo : ''"
+		>
+			<div
+				v-if="drawerMenuShowing"
+				:class="$style.menuDrawerBg"
+				class="_modalBg"
+				@click="drawerMenuShowing = false"
+				@touchstart.passive="drawerMenuShowing = false"
+			></div>
+		</Transition>
+	
+		<Transition
+			:enterActiveClass="defaultStore.state.animation ? $style.transition_menuDrawer_enterActive : ''"
+			:leaveActiveClass="defaultStore.state.animation ? $style.transition_menuDrawer_leaveActive : ''"
+			:enterFromClass="defaultStore.state.animation ? $style.transition_menuDrawer_enterFrom : ''"
+			:leaveToClass="defaultStore.state.animation ? $style.transition_menuDrawer_leaveTo : ''"
+		>
+			<div v-if="drawerMenuShowing" :class="$style.menuDrawer">
+				<XDrawerMenu/>
+			</div>
+		</Transition>
+	
+		<Transition
+			:enterActiveClass="defaultStore.state.animation ? $style.transition_widgetsDrawerBg_enterActive : ''"
+			:leaveActiveClass="defaultStore.state.animation ? $style.transition_widgetsDrawerBg_leaveActive : ''"
+			:enterFromClass="defaultStore.state.animation ? $style.transition_widgetsDrawerBg_enterFrom : ''"
+			:leaveToClass="defaultStore.state.animation ? $style.transition_widgetsDrawerBg_leaveTo : ''"
+		>
+			<div
+				v-if="widgetsShowing"
+				:class="$style.widgetsDrawerBg"
+				class="_modalBg"
+				@click="widgetsShowing = false"
+				@touchstart.passive="widgetsShowing = false"
+			></div>
+		</Transition>
+	
+		<Transition
+			:enterActiveClass="defaultStore.state.animation ? $style.transition_widgetsDrawer_enterActive : ''"
+			:leaveActiveClass="defaultStore.state.animation ? $style.transition_widgetsDrawer_leaveActive : ''"
+			:enterFromClass="defaultStore.state.animation ? $style.transition_widgetsDrawer_enterFrom : ''"
+			:leaveToClass="defaultStore.state.animation ? $style.transition_widgetsDrawer_leaveTo : ''"
+		>
+			<div v-if="widgetsShowing" :class="$style.widgetsDrawer">
+				<button class="_button" :class="$style.widgetsCloseButton" @click="widgetsShowing = false"><i class="ti ti-x"></i></button>
+				<XWidgets/>
+			</div>
+		</Transition>
+	
+		<XCommon/>
 	</div>
-
-	<div class="main">
-		<div v-if="!isRoot" class="header">
-			<div v-if="narrow === false" class="wide">
-				<MkA to="/" class="link" activeClass="active"><i class="ti ti-home icon"></i> {{ i18n.ts.home }}</MkA>
-				<MkA v-if="isTimelineAvailable" to="/timeline" class="link" activeClass="active"><i class="ph-chat-text ph-bold ph-lg icon"></i> {{ i18n.ts.timeline }}</MkA>
-				<MkA to="/explore" class="link" activeClass="active"><i class="ti ti-hash icon"></i> {{ i18n.ts.explore }}</MkA>
-				<MkA to="/channels" class="link" activeClass="active"><i class="ti ti-device-tv icon"></i> {{ i18n.ts.channel }}</MkA>
-			</div>
-			<div v-else-if="narrow === true" class="narrow">
-				<button class="menu _button" @click="showMenu = true">
-					<i class="ti ti-menu-2 icon"></i>
-				</button>
-			</div>
-		</div>
-		<div class="contents">
-			<main v-if="!isRoot" style="container-type: inline-size;">
-				<RouterView/>
-			</main>
-			<main v-else>
-				<RouterView/>
-			</main>
-		</div>
-	</div>
-
-	<Transition :name="'tray-back'">
-		<div
-			v-if="showMenu"
-			class="menu-back _modalBg"
-			@click="showMenu = false"
-			@touchstart.passive="showMenu = false"
-		></div>
-	</Transition>
-
-	<Transition :name="'tray'">
-		<div v-if="showMenu" class="menu">
-			<MkA to="/" class="link" activeClass="active"><i class="ti ti-home icon"></i>{{ i18n.ts.home }}</MkA>
-			<MkA v-if="isTimelineAvailable" to="/timeline" class="link" activeClass="active"><i class="ph-chat-text ph-bold ph-lg icon"></i>{{ i18n.ts.timeline }}</MkA>
-			<MkA to="/explore" class="link" activeClass="active"><i class="ti ti-hash icon"></i>{{ i18n.ts.explore }}</MkA>
-			<MkA to="/announcements" class="link" activeClass="active"><i class="ti ti-speakerphone icon"></i>{{ i18n.ts.announcements }}</MkA>
-			<MkA to="/channels" class="link" activeClass="active"><i class="ti ti-device-tv icon"></i>{{ i18n.ts.channel }}</MkA>
-			<div class="divider"></div>
-			<MkA to="/pages" class="link" activeClass="active"><i class="ti ti-news icon"></i>{{ i18n.ts.pages }}</MkA>
-			<MkA to="/play" class="link" activeClass="active"><i class="ti ti-player-play icon"></i>Play</MkA>
-			<MkA to="/gallery" class="link" activeClass="active"><i class="ph-images-square ph-bold ph-lgs icon"></i>{{ i18n.ts.gallery }}</MkA>
-			<div class="action">
-				<button class="_buttonPrimary" @click="signup()">{{ i18n.ts.signup }}</button>
-				<button class="_button" @click="signin()">{{ i18n.ts.login }}</button>
-			</div>
-		</div>
-	</Transition>
-</div>
-<XCommon/>
-</template>
-
-<script lang="ts" setup>
-import { onMounted, provide, ref, computed } from 'vue';
-import XCommon from './_common_/common.vue';
-import { instanceName } from '@@/js/config.js';
-import * as os from '@/os.js';
-import { instance } from '@/instance.js';
-import XSigninDialog from '@/components/MkSigninDialog.vue';
-import XSignupDialog from '@/components/MkSignupDialog.vue';
-import { ColdDeviceStorage, defaultStore } from '@/store.js';
-import { PageMetadata, provideMetadataReceiver, provideReactiveMetadata } from '@/scripts/page-metadata.js';
-import { i18n } from '@/i18n.js';
-import MkVisitorDashboard from '@/components/MkVisitorDashboard.vue';
-import { mainRouter } from '@/router/main.js';
-
-const isRoot = computed(() => mainRouter.currentRoute.value.name === 'index');
-
-const DESKTOP_THRESHOLD = 1100;
-
-const pageMetadata = ref<null | PageMetadata>(null);
-
-provide('router', mainRouter);
-provideMetadataReceiver((metadataGetter) => {
-	const info = metadataGetter();
-	pageMetadata.value = info;
-	if (pageMetadata.value) {
-		if (isRoot.value && pageMetadata.value.title === instanceName) {
-			document.title = pageMetadata.value.title;
-		} else {
-			document.title = `${pageMetadata.value.title} | ${instanceName}`;
+	</template>
+	
+	<script lang="ts" setup>
+	import { defineAsyncComponent, provide, onMounted, computed, ref, watch, shallowRef, Ref } from 'vue';
+	import { instanceName } from '@@/js/config.js';
+	import { CURRENT_STICKY_BOTTOM } from '@@/js/const.js';
+	import { isLink } from '@@/js/is-link.js';
+	import XCommon from './_common_/common.vue';
+	import type MkStickyContainer from '@/components/global/MkStickyContainer.vue';
+	import XDrawerMenu from '@/ui/_common_/navbar-for-mobile.vue';
+	import * as os from '@/os.js';
+	import { defaultStore } from '@/store.js';
+	import { navbarItemDef } from '@/navbar.js';
+	import { i18n } from '@/i18n.js';
+	import { $i } from '@/account.js';
+	import { PageMetadata, provideMetadataReceiver, provideReactiveMetadata } from '@/scripts/page-metadata.js';
+	import { deviceKind } from '@/scripts/device-kind.js';
+	import { miLocalStorage } from '@/local-storage.js';
+	import { useScrollPositionManager } from '@/nirax.js';
+	import { mainRouter } from '@/router/main.js';
+	
+	const XWidgets = defineAsyncComponent(() => import('./universal.widgets.vue'));
+	const XSidebar = defineAsyncComponent(() => import('@/ui/_common_/navbar.vue'));
+	const XStatusBars = defineAsyncComponent(() => import('@/ui/_common_/statusbars.vue'));
+	const XAnnouncements = defineAsyncComponent(() => import('@/ui/_common_/announcements.vue'));
+	
+	const isRoot = computed(() => mainRouter.currentRoute.value.name === 'index');
+	
+	const DESKTOP_THRESHOLD = 1100;
+	const MOBILE_THRESHOLD = 500;
+	
+	// デスクトップでウィンドウを狭くしたときモバイルUIが表示されて欲しいことはあるので deviceKind === 'desktop' の判定は行わない
+	const isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD);
+	const isMobile = ref(deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD);
+	window.addEventListener('resize', () => {
+		isMobile.value = deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD;
+	});
+	
+	const pageMetadata = ref<null | PageMetadata>(null);
+	const widgetsShowing = ref(false);
+	const navFooter = shallowRef<HTMLElement>();
+	const contents = shallowRef<InstanceType<typeof MkStickyContainer>>();
+	
+	provide('router', mainRouter);
+	provideMetadataReceiver((metadataGetter) => {
+		const info = metadataGetter();
+		pageMetadata.value = info;
+		if (pageMetadata.value) {
+			if (isRoot.value && pageMetadata.value.title === instanceName) {
+				document.title = pageMetadata.value.title;
+			} else {
+				document.title = `${pageMetadata.value.title} | ${instanceName}`;
+			}
+		}
+	});
+	provideReactiveMetadata(pageMetadata);
+	
+	const menuIndicated = computed(() => {
+		for (const def in navbarItemDef) {
+			if (def === 'notifications') continue; // 通知は下にボタンとして表示されてるから
+			if (navbarItemDef[def].indicated) return true;
+		}
+		return false;
+	});
+	
+	const drawerMenuShowing = ref(false);
+	
+	mainRouter.on('change', () => {
+		drawerMenuShowing.value = false;
+	});
+	
+	if (window.innerWidth > 1024) {
+		const tempUI = miLocalStorage.getItem('ui_temp');
+		if (tempUI) {
+			miLocalStorage.setItem('ui', tempUI);
+			miLocalStorage.removeItem('ui_temp');
+			location.reload();
 		}
 	}
-});
-provideReactiveMetadata(pageMetadata);
-
-const announcements = {
-	endpoint: 'announcements',
-	limit: 10,
-};
-
-const isTimelineAvailable = ref(instance.policies?.ltlAvailable || instance.policies?.gtlAvailable);
-
-const showMenu = ref(false);
-const isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD);
-const narrow = ref(window.innerWidth < 1280);
-
-const keymap = computed(() => {
-	return {
-		'd': () => {
-			if (ColdDeviceStorage.get('syncDeviceDarkMode')) return;
-			defaultStore.set('darkMode', !defaultStore.state.darkMode);
-		},
-		's': () => {
-			mainRouter.push('/search');
-		},
+	
+	defaultStore.loaded.then(() => {
+		if (defaultStore.state.widgets.length === 0) {
+			defaultStore.set('widgets', [{
+				name: 'calendar',
+				id: 'a', place: 'right', data: {},
+			}, {
+				name: 'notifications',
+				id: 'b', place: 'right', data: {},
+			}, {
+				name: 'trends',
+				id: 'c', place: 'right', data: {},
+			}]);
+		}
+	});
+	
+	onMounted(() => {
+		if (!isDesktop.value) {
+			window.addEventListener('resize', () => {
+				if (window.innerWidth >= DESKTOP_THRESHOLD) isDesktop.value = true;
+			}, { passive: true });
+		}
+	});
+	
+	const onContextmenu = (ev) => {
+		if (isLink(ev.target)) return;
+		if (['INPUT', 'TEXTAREA', 'IMG', 'VIDEO', 'CANVAS'].includes(ev.target.tagName) || ev.target.attributes['contenteditable']) return;
+		if (window.getSelection()?.toString() !== '') return;
+		const path = mainRouter.getCurrentPath();
+		os.contextMenu([{
+			type: 'label',
+			text: path,
+		}, {
+			icon: 'ti ti-window-maximize',
+			text: i18n.ts.openInWindow,
+			action: () => {
+				os.pageWindow(path);
+			},
+		}], ev);
 	};
-});
-
-function signin() {
-	const { dispose } = os.popup(XSigninDialog, {
-		autoSet: true,
-	}, {
-		closed: () => dispose(),
-	});
-}
-
-function signup() {
-	const { dispose } = os.popup(XSignupDialog, {
-		autoSet: true,
-	}, {
-		closed: () => dispose(),
-	});
-}
-
-onMounted(() => {
-	if (!isDesktop.value) {
-		window.addEventListener('resize', () => {
-			if (window.innerWidth >= DESKTOP_THRESHOLD) isDesktop.value = true;
-		}, { passive: true });
+	
+	function top() {
+		contents.value.rootEl.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
 	}
-});
-
-defineExpose({
-	showMenu: showMenu,
-});
-</script>
-
-<style>
-.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
-</style>
-
-<style lang="scss" scoped>
-.tray-enter-active,
-.tray-leave-active {
-	opacity: 1;
-	transform: translateX(0);
-	transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-.tray-enter-from,
-.tray-leave-active {
-	opacity: 0;
-	transform: translateX(-240px);
-}
-
-.tray-back-enter-active,
-.tray-back-leave-active {
-	opacity: 1;
-	transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-.tray-back-enter-from,
-.tray-back-leave-active {
-	opacity: 0;
-}
-
-.mk-app {
-	display: flex;
-	min-height: 100vh;
-
-	> .side {
+	
+	const navFooterHeight = ref(0);
+	provide<Ref<number>>(CURRENT_STICKY_BOTTOM, navFooterHeight);
+	
+	watch(navFooter, () => {
+		if (navFooter.value) {
+			navFooterHeight.value = navFooter.value.offsetHeight;
+			document.body.style.setProperty('--MI-stickyBottom', `${navFooterHeight.value}px`);
+			document.body.style.setProperty('--MI-minBottomSpacing', 'var(--MI-minBottomSpacingMobile)');
+		} else {
+			navFooterHeight.value = 0;
+			document.body.style.setProperty('--MI-stickyBottom', '0px');
+			document.body.style.setProperty('--MI-minBottomSpacing', '0px');
+		}
+	}, {
+		immediate: true,
+	});
+	
+	useScrollPositionManager(() => contents.value.rootEl, mainRouter);
+	</script>
+	
+	<style>
+	html,
+	body {
+		width: 100%;
+		height: 100%;
+		overflow: clip;
+		position: fixed;
+		top: 0;
+		left: 0;
+		overscroll-behavior: none;
+	}
+	
+	#sharkey_app {
+		width: 100%;
+		height: 100%;
+		overflow: clip;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	</style>
+	
+	<style lang="scss" module>
+	$ui-font-size: 1em; // TODO: どこかに集約したい
+	$widgets-hide-threshold: 1090px;
+	
+	.transition_menuDrawerBg_enterActive,
+	.transition_menuDrawerBg_leaveActive {
+		opacity: 1;
+		transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+	}
+	.transition_menuDrawerBg_enterFrom,
+	.transition_menuDrawerBg_leaveTo {
+		opacity: 0;
+	}
+	
+	.transition_menuDrawer_enterActive,
+	.transition_menuDrawer_leaveActive {
+		opacity: 1;
+		transform: translateX(0);
+		transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+	}
+	.transition_menuDrawer_enterFrom,
+	.transition_menuDrawer_leaveTo {
+		opacity: 0;
+		transform: translateX(-240px);
+	}
+	
+	.transition_widgetsDrawerBg_enterActive,
+	.transition_widgetsDrawerBg_leaveActive {
+		opacity: 1;
+		transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+	}
+	.transition_widgetsDrawerBg_enterFrom,
+	.transition_widgetsDrawerBg_leaveTo {
+		opacity: 0;
+	}
+	
+	.transition_widgetsDrawer_enterActive,
+	.transition_widgetsDrawer_leaveActive {
+		opacity: 1;
+		transform: translateX(0);
+		transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+	}
+	.transition_widgetsDrawer_enterFrom,
+	.transition_widgetsDrawer_leaveTo {
+		opacity: 0;
+		transform: translateX(240px);
+	}
+	
+	.root {
+		height: 100dvh;
+		overflow: clip;
+		contain: strict;
+		box-sizing: border-box;
+		display: flex;
+	}
+	
+	.sidebar {
+		border-right: solid 0.5px var(--MI_THEME-divider);
+	}
+	
+	.contents {
+		flex: 1;
+		height: 100%;
+		min-width: 0;
+		overflow: auto;
+		overflow-y: scroll;
+		overscroll-behavior: unset;
+		background: var(--MI_THEME-bg);
+	}
+	
+	.widgets {
+		width: 350px;
+		height: 100%;
+		box-sizing: border-box;
+		overflow: auto;
+		padding: var(--MI-margin) var(--MI-margin) calc(var(--MI-margin) + env(safe-area-inset-bottom, 0px));
+		border-left: solid 0.5px var(--MI_THEME-divider);
+		background: var(--MI_THEME-bg);
+	
+		@media (max-width: $widgets-hide-threshold) {
+			display: none;
+		}
+	}
+	
+	.widgetButton {
+		display: block;
+		position: fixed;
+		z-index: 1000;
+		bottom: 32px;
+		right: 32px;
+		width: 64px;
+		height: 64px;
+		border-radius: var(--MI-radius-full);
+		box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+		font-size: 22px;
+		background: var(--MI_THEME-panel);
+	}
+	
+	.widgetsDrawerBg {
+		z-index: 1001;
+	}
+	
+	.widgetsDrawer {
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 1001;
+		width: 310px;
+		height: 100dvh;
+		padding: var(--MI-margin) var(--MI-margin) calc(var(--MI-margin) + env(safe-area-inset-bottom, 0px)) !important;
+		box-sizing: border-box;
+		overflow: auto;
+		overscroll-behavior: contain;
+		background: var(--MI_THEME-bg);
+	}
+	
+	.widgetsCloseButton {
+		padding: 8px;
+		display: block;
+		margin: 0 auto;
+	}
+	
+	@media (min-width: 370px) {
+		.widgetsCloseButton {
+			display: none;
+		}
+	}
+	
+	.nav {
+		position: fixed;
+		z-index: 1000;
+		bottom: 0;
+		left: 0;
+		padding: 12px 12px max(12px, env(safe-area-inset-bottom, 0px)) 12px;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-gap: 8px;
+		width: 100%;
+		box-sizing: border-box;
+		-webkit-backdrop-filter: var(--MI-blur, blur(24px));
+		backdrop-filter: var(--MI-blur, blur(24px));
+		background-color: var(--MI_THEME-header);
+		border-top: solid 0.5px var(--MI_THEME-divider);
+	}
+	
+	.navButton {
+		position: relative;
+		padding: 0;
+		height: 32px;
+		width: 100%;
+		max-width: 60px;
+		margin: auto;
+		border-radius: var(--MI-radius-lg);
+		background: transparent;
+		color: var(--MI_THEME-fg);
+	
+		&:hover {
+			background: var(--MI_THEME-panelHighlight);
+			color: var(--MI_THEME-accent);
+		}
+	
+		&:active {
+			background: hsl(from var(--MI_THEME-panel) h s calc(l - 2));
+			color: var(--MI_THEME-accent);
+		}
+	}
+	
+	.postButton {
+		composes: navButton;
+		background: linear-gradient(90deg, var(--MI_THEME-buttonGradateA), var(--MI_THEME-buttonGradateB));
+		color: var(--MI_THEME-fgOnAccent);
+	
+		&:hover {
+			background: linear-gradient(90deg, hsl(from var(--MI_THEME-accent) h s calc(l + 5)), hsl(from var(--MI_THEME-accent) h s calc(l + 5)));
+			color: var(--MI_THEME-fgOnAccent);
+		}
+	
+		&:active {
+			color: var(--MI_THEME-fgOnAccent);
+			background: linear-gradient(90deg, hsl(from var(--MI_THEME-accent) h s calc(l + 5)), hsl(from var(--MI_THEME-accent) h s calc(l + 5)));
+		}
+	}
+	
+	.navButtonIcon {
+		font-size: 16px;
+		vertical-align: middle;
+	}
+	
+	.navButtonIndicator {
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: var(--MI_THEME-indicator);
+		font-size: 16px;
+	
+		&:has(.itemIndicateValueIcon) {
+			animation: none;
+			font-size: 12px;
+		}
+	}
+	
+	.menuDrawerBg {
+		z-index: 1001;
+	}
+	
+	.menuDrawer {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 1001;
+		height: 100dvh;
+		width: 240px;
+		box-sizing: border-box;
+		contain: strict;
+		overflow: auto;
+		overscroll-behavior: contain;
+		background: var(--MI_THEME-navBg);
+	}
+	
+	.statusbars {
 		position: sticky;
 		top: 0;
 		left: 0;
-		width: 500px;
-		height: 100vh;
-		background: var(--MI_THEME-accent);
-		z-index: 1;
-
-		> .banner {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			aspect-ratio: 1.5;
-			background-position: center;
-			background-size: cover;
-			-webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1.0), transparent);
-			mask-image: linear-gradient(rgba(0, 0, 0, 1.0), transparent);
-		}
-
-		> .dashboard {
-			position: relative;
-			padding: 32px;
-			box-sizing: border-box;
-			max-height: 100%;
-			overflow: auto;
-		}
 	}
-
-	> .main {
-		flex: 1;
-		min-width: 0;
-
-		> .header {
-			background: var(--MI_THEME-panel);
-			position: relative;
-			z-index: 1;
-
-			> .wide {
-				line-height: 50px;
-				padding: 0 16px;
-
-				> .link {
-					padding: 0 16px;
-				}
-			}
-
-			> .narrow {
-				> .menu {
-					padding: 16px;
-				}
-			}
-		}
+	
+	.spacer {
+		height: calc(var(--MI-minBottomSpacing));
 	}
-
-	> .menu-back {
-		position: fixed;
-		z-index: 1001;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
-	}
-
-	> .menu {
-		position: fixed;
-		z-index: 1001;
-		top: 0;
-		left: 0;
-		width: 240px;
-		height: 100vh;
-		background: var(--MI_THEME-panel);
-
-		> .link {
-			display: block;
-			padding: 16px;
-
-			> .icon {
-				margin-right: 1em;
-			}
-		}
-
-		> .divider {
-			margin: 8px auto;
-			width: calc(100% - 32px);
-			border-top: solid 0.5px var(--MI_THEME-divider);
-		}
-
-		> .action {
-			padding: 16px;
-
-			> button {
-				display: block;
-				width: 100%;
-				padding: 10px;
-				box-sizing: border-box;
-				text-align: center;
-				border-radius: var(--MI-radius-ellipse);
-
-				&._button {
-					background: var(--MI_THEME-panel);
-				}
-
-				&:first-child {
-					margin-bottom: 16px;
-				}
-			}
-		}
-	}
-}
-</style>
+	</style>
+	
