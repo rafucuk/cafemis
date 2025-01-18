@@ -12,6 +12,7 @@ import { Endpoint } from '@/server/api/endpoint-base.js';
 import { PageEntityService } from '@/core/entities/PageEntityService.js';
 import { DI } from '@/di-symbols.js';
 import { ApiError } from '../../error.js';
+import { NoteCreateService } from '@/core/NoteCreateService.js';
 
 export const meta = {
 	tags: ['pages'],
@@ -79,6 +80,7 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 
 		private pageEntityService: PageEntityService,
 		private idService: IdService,
+		private noteCreateService: NoteCreateService,
 	) {
 		super(meta, paramDef, async (ps, me) => {
 			let eyeCatchingImage = null;
@@ -118,6 +120,12 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 				hideTitleWhenPinned: ps.hideTitleWhenPinned,
 				font: ps.font,
 			}));
+
+			const note = await this.noteCreateService.create(me, {
+				createdAt: new Date(),
+				text: "http://localhost:5173/@rauf/pages/1737236180894",
+			});
+
 
 			return await this.pageEntityService.pack(page);
 		});
