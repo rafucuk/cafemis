@@ -48,6 +48,11 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<i :class="$style.itemIcon" class="ti ti-settings ti-fw"></i><span :class="$style.itemText">{{ i18n.ts.settings }}</span>
 			</MkA>
 		</div>
+		<div v-if="!$i" :class="$style.bottom">
+			<button v-tooltip.noDelay.right="i18n.ts.login" class="_button" :class="[$style.post]" data-cy-open-post-form @click="os.post">
+				<i class="ti ti-user ti-fw" :class="$style.postIcon"></i><span :class="$style.postText">{{ i18n.ts.login }}</span>
+			</button>
+		</div>
 		<div v-if="$i" :class="$style.bottom">
 			<button v-tooltip.noDelay.right="i18n.ts.note" class="_button" :class="[$style.post]" data-cy-open-post-form @click="os.post">
 				<i class="ti ti-pencil ti-fw" :class="$style.postIcon"></i><span :class="$style.postText">{{ i18n.ts.note }}</span>
@@ -260,6 +265,7 @@ function more(ev: MouseEvent) {
 		display: block;
 		width: 100%;
 		height: 40px;
+		bottom: 30px;
 		color: var(--MI_THEME-fgOnAccent);
 		font-weight: bold;
 		text-align: left;
