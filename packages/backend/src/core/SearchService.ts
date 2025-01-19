@@ -10,7 +10,7 @@ import type { Config } from '@/config.js';
 import { bindThis } from '@/decorators.js';
 import { MiNote } from '@/models/Note.js';
 import { MiUser } from '@/models/_.js';
-import type { NotesRepository } from '@/models/_.js';
+import type { NotesRepository, PagesRepository } from '@/models/_.js';
 import { sqlLikeEscape } from '@/misc/sql-like-escape.js';
 import { isUserRelated } from '@/misc/is-user-related.js';
 import { CacheService } from '@/core/CacheService.js';
@@ -76,6 +76,9 @@ export class SearchService {
 		@Inject(DI.notesRepository)
 		private notesRepository: NotesRepository,
 
+		@Inject(DI.pagesRepository)
+		private pagesRepository: PagesRepository,
+
 		private cacheService: CacheService,
 		private queryService: QueryService,
 		private idService: IdService,
@@ -105,10 +108,171 @@ export class SearchService {
 					maxTotalHits: 10000,
 				},
 			});
+
+			this.meilisearchPageIndex = meilisearch.index(`${this.config.meilisearch?.index}---pages`);
+			this.meilisearchPageIndex.updateSettings({
+				searchableAttributes: [
+					'text',
+					'cw',
+					'content'
+				],
+				sortableAttributes: [
+					'createdAt',
+				],
+				filterableAttributes: [
+					'createdAt',
+					'userId',
+					'userHost',
+					'channelId',
+					'tags',
+					'attachedFileTypes',
+				],
+				typoTolerance: {
+					enabled: false,
+				},
+				pagination: {
+					maxTotalHits: 10000,
+				},
+			});
 		}
 
 		if (this.config.meilisearch?.scope) {
 			this.meilisearchIndexScope = this.config.meilisearch.scope;
+		}
+	}
+
+	@bindThis
+	public async indexPage(page: MiPage): Promise<void> {
+		if (!['public'].includes(page.visibility)) return;
+
+		if (this.meilisearch) {
+			switch (this.meilisearchIndexScope) {
+				case 'global':
+					break;
+
+				case 'local':
+					if (page.userHost == null) break;
+					return;
+
+				default: {
+					if (page.userHost == null) break;
+					if (this.meilisearchIndexScope.includes(page.userHost)) break;
+					return;
+				}
+			}
+
+			await this.meilisearchPageIndex?.addDocuments([{
+				id: page.id,
+				createdAt: this.idService.parse(page.id).date.getTime(),
+				updatedAt: page.updatedAt.getTime(),
+				userId: page.userId,
+				userHost: page.userHost,
+				title: page.title,
+				content: page.content,
+				summary: page.summary,
+				visibility: page.visibility,
+				tags: page.tags,
+			}], {
+				primaryKey: 'id',
+			});
+		}
+	}
+
+	@bindThis
+	public async unindexPage(page: MiPage): Promise<void> {
+		if (!['public'].includes(page.visibility)) return;
+
+		if (this.meilisearch) {
+			this.meilisearchPageIndex!.deleteDocument(page.id);
+		}
+	}
+
+	@bindThis
+	public async searchPage(q: string, me: MiUser | null, opts: {
+		userId?: MiPage['userId'] | null;
+		host?: string | null;
+		order?: string | null;
+		disableMeili?: boolean | null;
+	}, pagination: {
+		untilId?: MiPage['id'];
+		sinceId?: MiPage['id'];
+		limit?: number;
+	}): Promise<MiPage[]> {
+		if (this.meilisearch && !opts.disableMeili) {
+			const filter: Q = {
+				op: 'and',
+				qs: [],
+			};
+			if (pagination.untilId) filter.qs.push({ op: '<', k: 'createdAt', v: this.idService.parse(pagination.untilId).date.getTime() });
+			if (pagination.sinceId) filter.qs.push({ op: '>', k: 'createdAt', v: this.idService.parse(pagination.sinceId).date.getTime() });
+			if (opts.userId) filter.qs.push({ op: '=', k: 'userId', v: opts.userId });
+			if (opts.host) {
+				if (opts.host === '.') {
+					filter.qs.push({ op: 'is null', k: 'userHost' });
+				} else {
+					filter.qs.push({ op: '=', k: 'userHost', v: opts.host });
+				}
+			}
+	
+			// Modified search configuration to include content array
+			const res = await this.meilisearchPageIndex!.search(q, {
+				sort: [`createdAt:${opts.order ? opts.order : 'desc'}`],
+				matchingStrategy: 'all',
+				attributesToRetrieve: ['id', 'createdAt', 'title', 'summary', 'content'],
+				filter: compileQuery(filter),
+				limit: pagination.limit,
+			});
+	
+			if (res.hits.length === 0) return [];
+	
+			const [
+				userIdsWhoMeMuting,
+				userIdsWhoBlockingMe,
+			] = me ? await Promise.all([
+				this.cacheService.userMutingsCache.fetch(me.id),
+				this.cacheService.userBlockedCache.fetch(me.id),
+			]) : [new Set<string>(), new Set<string>()];
+	
+			const pages = (await this.pagesRepository.findBy({
+				id: In(res.hits.map(x => x.id)),
+			})).filter(page => {
+				if (me && isUserRelated(page, userIdsWhoBlockingMe)) return false;
+				if (me && isUserRelated(page, userIdsWhoMeMuting)) return false;
+				return true;
+			});
+	
+			return pages.sort((a, b) => a.id > b.id ? -1 : 1);
+		} else {
+			const query = this.queryService.makePaginationQuery(this.pagesRepository.createQueryBuilder('page'), pagination.sinceId, pagination.untilId);
+			
+			if (opts.userId) {
+				query.andWhere('page.userId = :userId', { userId: opts.userId });
+			}
+	
+			// Modified search condition to include content array
+			query
+				.andWhere(
+					'(page.title ILIKE :q OR page.summary ILIKE :q OR EXISTS (' +
+					'SELECT 1 FROM jsonb_array_elements(page.content) as content ' +
+					'WHERE content->\'text\' ILIKE :q' +
+					'))',
+					{ q: `%${sqlLikeEscape(q)}%` }
+				)
+				.innerJoinAndSelect('page.user', 'user');
+	
+			if (opts.host) {
+				if (opts.host === '.') {
+					query.andWhere('user.host IS NULL');
+				} else {
+					query.andWhere('user.host = :host', { host: opts.host });
+				}
+			}
+	
+			this.queryService.generateVisibilityQuery(query, me);
+			if (me) this.queryService.generateMutedUserQuery(query, me);
+			if (me) this.queryService.generateBlockedUserQuery(query, me);
+	
+			return await query.limit(pagination.limit).getMany();
 		}
 	}
 

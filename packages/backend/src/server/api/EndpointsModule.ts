@@ -333,6 +333,7 @@ import * as ep___notifications_testNotification from './endpoints/notifications/
 import * as ep___pagePush from './endpoints/page-push.js';
 import * as ep___pages_create from './endpoints/pages/create.js';
 import * as ep___pages_delete from './endpoints/pages/delete.js';
+import * as ep___pages_search from './endpoints/pages/search.js';
 import * as ep___pages_featured from './endpoints/pages/featured.js';
 import * as ep___pages_like from './endpoints/pages/like.js';
 import * as ep___pages_show from './endpoints/pages/show.js';
@@ -743,6 +744,7 @@ const $pages_delete: Provider = { provide: 'ep:pages/delete', useClass: ep___pag
 const $pages_featured: Provider = { provide: 'ep:pages/featured', useClass: ep___pages_featured.default };
 const $pages_like: Provider = { provide: 'ep:pages/like', useClass: ep___pages_like.default };
 const $pages_show: Provider = { provide: 'ep:pages/show', useClass: ep___pages_show.default };
+const $pages_search: Provider = { provide: 'ep:pages/search', useClass: ep___pages_search.default };
 const $pages_unlike: Provider = { provide: 'ep:pages/unlike', useClass: ep___pages_unlike.default };
 const $pages_update: Provider = { provide: 'ep:pages/update', useClass: ep___pages_update.default };
 const $flash_create: Provider = { provide: 'ep:flash/create', useClass: ep___flash_create.default };
@@ -1152,6 +1154,7 @@ const $reversi_verify: Provider = { provide: 'ep:reversi/verify', useClass: ep__
 		$pages_create,
 		$pages_delete,
 		$pages_featured,
+		$pages_search,
 		$pages_like,
 		$pages_show,
 		$pages_unlike,
@@ -1554,6 +1557,7 @@ const $reversi_verify: Provider = { provide: 'ep:reversi/verify', useClass: ep__
 		$notifications_testNotification,
 		$pagePush,
 		$pages_create,
+		$pages_search,
 		$pages_delete,
 		$pages_featured,
 		$pages_like,

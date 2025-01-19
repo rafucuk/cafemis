@@ -11,6 +11,7 @@ import { ModerationLogService } from '@/core/ModerationLogService.js';
 import { RoleService } from '@/core/RoleService.js';
 import { ApiError } from '../../error.js';
 import ms from 'ms';
+import { SearchService } from '@/core/SearchService.js';
 
 export const meta = {
 	tags: ['pages'],
@@ -59,6 +60,8 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 
 		private moderationLogService: ModerationLogService,
 		private roleService: RoleService,
+
+		private searchService: SearchService,
 	) {
 		super(meta, paramDef, async (ps, me) => {
 			const page = await this.pagesRepository.findOneBy({ id: ps.pageId });
@@ -72,6 +75,7 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 			}
 
 			await this.pagesRepository.delete(page.id);
+			this.searchService.unindexPage(page);
 
 			if (page.userId !== me.id) {
 				const user = await this.usersRepository.findOneByOrFail({ id: page.userId });

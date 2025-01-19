@@ -17,6 +17,15 @@ SPDX-License-Identifier: AGPL-3.0-only
 			</div>
 		</MkSpacer>
 
+		<MkSpacer v-if="tab === 'page'" key="page" :contentMax="800">
+			<div v-if="notesSearchAvailable || ignoreNotesSearchAvailable">
+				<XPage v-bind="props"/>
+			</div>
+			<div v-else>
+				<MkInfo warn>{{ i18n.ts.notesSearchNotAvailable }}</MkInfo>
+			</div>
+		</MkSpacer>
+
 		<MkSpacer v-else-if="tab === 'user'" key="user" :contentMax="800">
 			<XUser v-bind="props"/>
 		</MkSpacer>
@@ -52,6 +61,7 @@ const props = withDefaults(defineProps<{
 });
 
 const XNote = defineAsyncComponent(() => import('./search.note.vue'));
+const XPage = defineAsyncComponent(() => import('./search.page.vue'));
 const XUser = defineAsyncComponent(() => import('./search.user.vue'));
 
 const tab = ref(toRef(props, 'type').value);
@@ -62,6 +72,10 @@ const headerTabs = computed(() => [{
 	key: 'note',
 	title: i18n.ts.notes,
 	icon: 'ti ti-pencil',
+},{
+	key: 'page',
+	title: i18n.ts.pages,
+	icon: 'ti ti-news',
 }, {
 	key: 'user',
 	title: i18n.ts.users,
