@@ -258,6 +258,10 @@ export class NoteCreateService implements OnApplicationShutdown {
 		if (data.channel != null) data.visibleUsers = [];
 		if (data.channel != null) data.localOnly = true;
 
+		if ((await this.roleService.getUserPolicies(user.id)).canCreateNote === false) {
+			throw new IdentifiableError('bd17ca14-e15b-4943-a975-066f31476c0b', 'User cant create note');
+		}
+
 		if (data.visibility === 'public' && data.channel == null) {
 			const sensitiveWords = this.meta.sensitiveWords;
 			if (this.utilityService.isKeyWordIncluded(data.cw ?? data.text ?? '', sensitiveWords)) {
@@ -423,6 +427,7 @@ export class NoteCreateService implements OnApplicationShutdown {
 		if (mentionedUsers.length > 0 && mentionedUsers.length > (await this.roleService.getUserPolicies(user.id)).mentionLimit) {
 			throw new IdentifiableError('9f466dab-c856-48cd-9e65-ff90ff750580', 'Note contains too many mentions');
 		}
+
 
 		const note = await this.insertNote(user, data, tags, emojis, mentionedUsers);
 
