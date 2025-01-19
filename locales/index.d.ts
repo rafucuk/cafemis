@@ -6901,6 +6901,26 @@ export interface Locale extends ILocale {
              */
             "canPublicNote": string;
             /**
+             * Not gönderebilir
+             */
+            "canCreateNote": string;
+            /**
+             * Sayfa oluşturabilir
+             */
+            "canCreatePage": string;
+            /**
+             * Galeri oluşturabilir
+             */
+            "canCreateGallery": string;
+            /**
+             * Play oluşturabilir
+             */
+            "canCreatePlay": string;
+            /**
+             * Kanal oluşturabilir
+             */
+            "canCreateChannel": string;
+            /**
              * Bir notta maksimum mention sayı
              */
             "mentionMax": string;

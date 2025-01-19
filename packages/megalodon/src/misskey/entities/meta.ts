@@ -19,6 +19,11 @@ namespace MisskeyEntity {
       btlAvailable: boolean
       ltlAvailable: boolean
       canPublicNote: boolean
+      canCreateNote: boolean
+      canCreatePage: boolean
+      canCreateGallery: boolean
+      canCreatePlay: boolean
+      canCreateChannel : boolean
       canImportNotes: boolean
       canInvite: boolean
       canManageCustomEmojis: boolean

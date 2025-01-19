@@ -62,6 +62,46 @@ SPDX-License-Identifier: AGPL-3.0-only
 							</MkSwitch>
 						</MkFolder>
 
+						<MkFolder v-if="matchQuery([i18n.ts._role._options.canCreateNote, 'canCreateNote'])">
+							<template #label>{{ i18n.ts._role._options.canCreateNote }}</template>
+							<template #suffix>{{ policies.canCreateNote ? i18n.ts.yes : i18n.ts.no }}</template>
+							<MkSwitch v-model="policies.canCreateNote">
+								<template #label>{{ i18n.ts.enable }}</template>
+							</MkSwitch>
+						</MkFolder>
+
+						<MkFolder v-if="matchQuery([i18n.ts._role._options.canCreatePage, 'canCreatePage'])">
+							<template #label>{{ i18n.ts._role._options.canCreatePage }}</template>
+							<template #suffix>{{ policies.canCreatePage ? i18n.ts.yes : i18n.ts.no }}</template>
+							<MkSwitch v-model="policies.canCreatePage">
+								<template #label>{{ i18n.ts.enable }}</template>
+							</MkSwitch>
+						</MkFolder>
+
+						<MkFolder v-if="matchQuery([i18n.ts._role._options.canCreateGallery, 'canCreateGallery'])">
+							<template #label>{{ i18n.ts._role._options.canCreateGallery }}</template>
+							<template #suffix>{{ policies.canCreateGallery ? i18n.ts.yes : i18n.ts.no }}</template>
+							<MkSwitch v-model="policies.canCreateGallery">
+								<template #label>{{ i18n.ts.enable }}</template>
+							</MkSwitch>
+						</MkFolder>
+
+						<MkFolder v-if="matchQuery([i18n.ts._role._options.canCreatePlay, 'canCreatePlay'])">
+							<template #label>{{ i18n.ts._role._options.canCreatePlay }}</template>
+							<template #suffix>{{ policies.canCreatePlay ? i18n.ts.yes : i18n.ts.no }}</template>
+							<MkSwitch v-model="policies.canCreatePlay">
+								<template #label>{{ i18n.ts.enable }}</template>
+							</MkSwitch>
+						</MkFolder>
+
+						<MkFolder v-if="matchQuery([i18n.ts._role._options.canCreateChannel, 'canCreateChannel'])">
+							<template #label>{{ i18n.ts._role._options.canCreateChannel }}</template>
+							<template #suffix>{{ policies.canCreateChannel ? i18n.ts.yes : i18n.ts.no }}</template>
+							<MkSwitch v-model="policies.canCreateChannel">
+								<template #label>{{ i18n.ts.enable }}</template>
+							</MkSwitch>
+						</MkFolder>
+
 						<MkFolder v-if="matchQuery([i18n.ts._role._options.canImportNotes, 'canImportNotes'])">
 							<template #label>{{ i18n.ts._role._options.canImportNotes }}</template>
 							<template #suffix>{{ policies.canImportNotes ? i18n.ts.yes : i18n.ts.no }}</template>

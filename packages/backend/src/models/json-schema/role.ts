@@ -180,6 +180,26 @@ export const packedRolePoliciesSchema = {
 			type: 'boolean',
 			optional: false, nullable: false,
 		},
+		canCreateNote: {
+			type: 'boolean',
+			optional: false, nullable: false,
+		},
+		canCreatePage: {
+			type: 'boolean',
+			optional: false, nullable: false,
+		},
+		canCreateGallery: {
+			type: 'boolean',
+			optional: false, nullable: false,
+		},
+		canCreatePlay: {
+			type: 'boolean',
+			optional: false, nullable: false,
+		},
+		canCreateChannel: {
+			type: 'boolean',
+			optional: false, nullable: false,
+		},
 		canPublicNote: {
 			type: 'boolean',
 			optional: false, nullable: false,

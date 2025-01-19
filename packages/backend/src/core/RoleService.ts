@@ -36,6 +36,11 @@ export type RolePolicies = {
 	ltlAvailable: boolean;
 	btlAvailable: boolean;
 	canPublicNote: boolean;
+	canCreateNote: boolean;
+	canCreatePage: boolean;
+	canCreateGallery: boolean;
+	canCreatePlay: boolean;
+	canCreateChannel: boolean;
 	scheduleNoteMax: number;
 	mentionLimit: number;
 	canInvite: boolean;
@@ -72,7 +77,12 @@ export const DEFAULT_POLICIES: RolePolicies = {
 	gtlAvailable: true,
 	ltlAvailable: true,
 	btlAvailable: false,
-	canPublicNote: true,
+	canPublicNote: false,
+	canCreateNote: false,
+	canCreatePage: false,
+	canCreateGallery: false,
+	canCreatePlay: false,
+	canCreateChannel: false,
 	scheduleNoteMax: 5,
 	mentionLimit: 20,
 	canInvite: false,
@@ -381,6 +391,11 @@ export class RoleService implements OnApplicationShutdown, OnModuleInit {
 			btlAvailable: calc('btlAvailable', vs => vs.some(v => v === true)),
 			ltlAvailable: calc('ltlAvailable', vs => vs.some(v => v === true)),
 			canPublicNote: calc('canPublicNote', vs => vs.some(v => v === true)),
+			canCreateNote: calc('canCreateNote', vs => vs.some(v => v === true)),
+			canCreatePage: calc('canCreatePage', vs => vs.some(v => v === true)),
+			canCreateGallery: calc('canCreateGallery', vs => vs.some(v => v === true)),
+			canCreatePlay: calc('canCreatePlay', vs => vs.some(v => v === true)),
+			canCreateChannel: calc('canCreateChannel', vs => vs.some(v => v === true)),
 			scheduleNoteMax: calc('scheduleNoteMax', vs => Math.max(...vs)),
 			mentionLimit: calc('mentionLimit', vs => Math.max(...vs)),
 			canInvite: calc('canInvite', vs => vs.some(v => v === true)),

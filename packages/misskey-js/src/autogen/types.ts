@@ -5086,6 +5086,11 @@ export type components = {
       ltlAvailable: boolean;
       btlAvailable: boolean;
       canPublicNote: boolean;
+      canCreateNote: boolean;
+      canCreatePage: boolean;
+      canCreateGallery: boolean;
+      canCreatePlay: boolean;
+      canCreateChannel : boolean;
       mentionLimit: number;
       canInvite: boolean;
       inviteLimit: number;
