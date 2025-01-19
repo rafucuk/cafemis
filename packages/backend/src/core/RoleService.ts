@@ -94,7 +94,7 @@ export const DEFAULT_POLICIES: RolePolicies = {
 	canSearchNotes: false,
 	canUseTranslator: true,
 	canHideAds: false,
-	driveCapacityMb: 100,
+	driveCapacityMb: 0,
 	alwaysMarkNsfw: false,
 	canUpdateBioMedia: true,
 	pinLimit: 5,

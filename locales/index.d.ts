@@ -5906,7 +5906,7 @@ export interface Locale extends ILocale {
         "_types": {
             "_notes1": {
                 /**
-                 * şonk kuruyorum
+                 * Cafemi kuruyorum
                  */
                 "title": string;
                 /**
