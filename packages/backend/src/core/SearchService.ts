@@ -214,7 +214,6 @@ export class SearchService {
 				}
 			}
 	
-			// Modified search configuration to include content array
 			const res = await this.meilisearchPageIndex!.search(q, {
 				sort: [`createdAt:${opts.order ? opts.order : 'desc'}`],
 				matchingStrategy: 'all',
@@ -249,16 +248,15 @@ export class SearchService {
 				query.andWhere('page.userId = :userId', { userId: opts.userId });
 			}
 	
-			// Modified search condition to include content array
-			query
-				.andWhere(
-					'(page.title ILIKE :q OR page.summary ILIKE :q OR EXISTS (' +
-					'SELECT 1 FROM jsonb_array_elements(page.content) as content ' +
-					'WHERE content->\'text\' ILIKE :q' +
-					'))',
+			// Modified to use OR conditions for searching in title, summary, and content
+			query.andWhere(new Brackets(qb => {
+				qb.where('page.title ILIKE :q', { q: `%${sqlLikeEscape(q)}%` })
+				  .orWhere('page.summary ILIKE :q', { q: `%${sqlLikeEscape(q)}%` })
+				  .orWhere(
+					'EXISTS (SELECT 1 FROM jsonb_array_elements(page.content) as content WHERE content->>\'text\' ILIKE :q)',
 					{ q: `%${sqlLikeEscape(q)}%` }
-				)
-				.innerJoinAndSelect('page.user', 'user');
+				  );
+			}));
 	
 			if (opts.host) {
 				if (opts.host === '.') {
