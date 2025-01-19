@@ -57,7 +57,7 @@
     "@types/core-js": "^2.5.8",
     "@types/form-data": "^2.5.0",
     "@types/jest": "^29.5.10",
-    "@types/oauth": "^0.9.4",
+    "@types/oauth": "^0.9.6",
     "@types/object-assign-deep": "^0.4.3",
     "@types/parse-link-header": "^2.0.3",
     "@types/uuid": "^9.0.7",
