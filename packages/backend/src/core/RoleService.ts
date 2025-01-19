@@ -74,7 +74,7 @@ export type RolePolicies = {
 };
 
 export const DEFAULT_POLICIES: RolePolicies = {
-	gtlAvailable: true,
+	gtlAvailable: false,
 	ltlAvailable: true,
 	btlAvailable: false,
 	canPublicNote: false,
