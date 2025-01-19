@@ -72,8 +72,8 @@
 	"devDependencies": {
 		"@misskey-dev/eslint-plugin": "2.0.3",
 		"@types/node": "22.9.0",
-		"@typescript-eslint/eslint-plugin": "7.17.0",
-		"@typescript-eslint/parser": "7.17.0",
+		"@typescript-eslint/eslint-plugin": "8.20.0",
+		"@typescript-eslint/parser": "8.20.0",
 		"cross-env": "7.0.3",
 		"eslint": "9.14.0",
 		"globals": "15.12.0",
