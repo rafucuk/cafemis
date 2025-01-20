@@ -180,6 +180,106 @@ SPDX-License-Identifier: AGPL-3.0-only
 				</div>
 			</MkFolder>
 
+			<MkFolder v-if="matchQuery([i18n.ts._role._options.canCreateNote, 'canCreateNote'])">
+				<template #label>{{ i18n.ts._role._options.canCreateNote }}</template>
+				<template #suffix>
+					<span v-if="role.policies.canCreateNote.useDefault" :class="$style.useDefaultLabel">{{ i18n.ts._role.useBaseValue }}</span>
+					<span v-else>{{ role.policies.canCreateNote.value ? i18n.ts.yes : i18n.ts.no }}</span>
+					<span :class="$style.priorityIndicator"><i :class="getPriorityIcon(role.policies.canCreateNote)"></i></span>
+				</template>
+				<div class="_gaps">
+					<MkSwitch v-model="role.policies.canCreateNote.useDefault" :readonly="readonly">
+						<template #label>{{ i18n.ts._role.useBaseValue }}</template>
+					</MkSwitch>
+					<MkSwitch v-model="role.policies.canCreateNote.value" :disabled="role.policies.canCreateNote.useDefault" :readonly="readonly">
+						<template #label>{{ i18n.ts.enable }}</template>
+					</MkSwitch>
+					<MkRange v-model="role.policies.canCreateNote.priority" :min="0" :max="2" :step="1" easing :textConverter="(v) => v === 0 ? i18n.ts._role._priority.low : v === 1 ? i18n.ts._role._priority.middle : v === 2 ? i18n.ts._role._priority.high : ''">
+						<template #label>{{ i18n.ts._role.priority }}</template>
+					</MkRange>
+				</div>
+			</MkFolder>
+
+			<MkFolder v-if="matchQuery([i18n.ts._role._options.canCreatePage, 'canCreatePage'])">
+				<template #label>{{ i18n.ts._role._options.canCreatePage }}</template>
+				<template #suffix>
+					<span v-if="role.policies.canCreatePage.useDefault" :class="$style.useDefaultLabel">{{ i18n.ts._role.useBaseValue }}</span>
+					<span v-else>{{ role.policies.canCreatePage.value ? i18n.ts.yes : i18n.ts.no }}</span>
+					<span :class="$style.priorityIndicator"><i :class="getPriorityIcon(role.policies.canCreatePage)"></i></span>
+				</template>
+				<div class="_gaps">
+					<MkSwitch v-model="role.policies.canCreatePage.useDefault" :readonly="readonly">
+						<template #label>{{ i18n.ts._role.useBaseValue }}</template>
+					</MkSwitch>
+					<MkSwitch v-model="role.policies.canCreatePage.value" :disabled="role.policies.canCreatePage.useDefault" :readonly="readonly">
+						<template #label>{{ i18n.ts.enable }}</template>
+					</MkSwitch>
+					<MkRange v-model="role.policies.canCreatePage.priority" :min="0" :max="2" :step="1" easing :textConverter="(v) => v === 0 ? i18n.ts._role._priority.low : v === 1 ? i18n.ts._role._priority.middle : v === 2 ? i18n.ts._role._priority.high : ''">
+						<template #label>{{ i18n.ts._role.priority }}</template>
+					</MkRange>
+				</div>
+			</MkFolder>
+
+			<MkFolder v-if="matchQuery([i18n.ts._role._options.canCreateGallery, 'canCreateGallery'])">
+				<template #label>{{ i18n.ts._role._options.canCreateGallery }}</template>
+				<template #suffix>
+					<span v-if="role.policies.canCreateGallery.useDefault" :class="$style.useDefaultLabel">{{ i18n.ts._role.useBaseValue }}</span>
+					<span v-else>{{ role.policies.canCreateGallery.value ? i18n.ts.yes : i18n.ts.no }}</span>
+					<span :class="$style.priorityIndicator"><i :class="getPriorityIcon(role.policies.canCreateGallery)"></i></span>
+				</template>
+				<div class="_gaps">
+					<MkSwitch v-model="role.policies.canCreateGallery.useDefault" :readonly="readonly">
+						<template #label>{{ i18n.ts._role.useBaseValue }}</template>
+					</MkSwitch>
+					<MkSwitch v-model="role.policies.canCreateGallery.value" :disabled="role.policies.canCreateGallery.useDefault" :readonly="readonly">
+						<template #label>{{ i18n.ts.enable }}</template>
+					</MkSwitch>
+					<MkRange v-model="role.policies.canCreateGallery.priority" :min="0" :max="2" :step="1" easing :textConverter="(v) => v === 0 ? i18n.ts._role._priority.low : v === 1 ? i18n.ts._role._priority.middle : v === 2 ? i18n.ts._role._priority.high : ''">
+						<template #label>{{ i18n.ts._role.priority }}</template>
+					</MkRange>
+				</div>
+			</MkFolder>
+
+			<MkFolder v-if="matchQuery([i18n.ts._role._options.canCreatePlay, 'canCreatePlay'])">
+				<template #label>{{ i18n.ts._role._options.canCreatePlay }}</template>
+				<template #suffix>
+					<span v-if="role.policies.canCreatePlay.useDefault" :class="$style.useDefaultLabel">{{ i18n.ts._role.useBaseValue }}</span>
+					<span v-else>{{ role.policies.canCreatePlay.value ? i18n.ts.yes : i18n.ts.no }}</span>
+					<span :class="$style.priorityIndicator"><i :class="getPriorityIcon(role.policies.canCreatePlay)"></i></span>
+				</template>
+				<div class="_gaps">
+					<MkSwitch v-model="role.policies.canCreatePlay.useDefault" :readonly="readonly">
+						<template #label>{{ i18n.ts._role.useBaseValue }}</template>
+					</MkSwitch>
+					<MkSwitch v-model="role.policies.canCreatePlay.value" :disabled="role.policies.canCreatePlay.useDefault" :readonly="readonly">
+						<template #label>{{ i18n.ts.enable }}</template>
+					</MkSwitch>
+					<MkRange v-model="role.policies.canCreatePlay.priority" :min="0" :max="2" :step="1" easing :textConverter="(v) => v === 0 ? i18n.ts._role._priority.low : v === 1 ? i18n.ts._role._priority.middle : v === 2 ? i18n.ts._role._priority.high : ''">
+						<template #label>{{ i18n.ts._role.priority }}</template>
+					</MkRange>
+				</div>
+			</MkFolder>
+
+			<MkFolder v-if="matchQuery([i18n.ts._role._options.canCreateChannel, 'canCreateChannel'])">
+				<template #label>{{ i18n.ts._role._options.canCreateChannel }}</template>
+				<template #suffix>
+					<span v-if="role.policies.canCreateChannel.useDefault" :class="$style.useDefaultLabel">{{ i18n.ts._role.useBaseValue }}</span>
+					<span v-else>{{ role.policies.canCreateChannel.value ? i18n.ts.yes : i18n.ts.no }}</span>
+					<span :class="$style.priorityIndicator"><i :class="getPriorityIcon(role.policies.canCreateChannel)"></i></span>
+				</template>
+				<div class="_gaps">
+					<MkSwitch v-model="role.policies.canCreateChannel.useDefault" :readonly="readonly">
+						<template #label>{{ i18n.ts._role.useBaseValue }}</template>
+					</MkSwitch>
+					<MkSwitch v-model="role.policies.canCreateChannel.value" :disabled="role.policies.canCreateChannel.useDefault" :readonly="readonly">
+						<template #label>{{ i18n.ts.enable }}</template>
+					</MkSwitch>
+					<MkRange v-model="role.policies.canCreateChannel.priority" :min="0" :max="2" :step="1" easing :textConverter="(v) => v === 0 ? i18n.ts._role._priority.low : v === 1 ? i18n.ts._role._priority.middle : v === 2 ? i18n.ts._role._priority.high : ''">
+						<template #label>{{ i18n.ts._role.priority }}</template>
+					</MkRange>
+				</div>
+			</MkFolder>
+
 			<MkFolder v-if="matchQuery([i18n.ts._role._options.canImportNotes, 'canImportNotes'])">
 				<template #label>{{ i18n.ts._role._options.canImportNotes }}</template>
 				<template #suffix>

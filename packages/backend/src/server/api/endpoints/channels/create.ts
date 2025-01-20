@@ -12,6 +12,7 @@ import { IdService } from '@/core/IdService.js';
 import { ChannelEntityService } from '@/core/entities/ChannelEntityService.js';
 import { DI } from '@/di-symbols.js';
 import { ApiError } from '../../error.js';
+import { RoleService } from '@/core/RoleService.js';
 
 export const meta = {
 	tags: ['channels'],
@@ -38,6 +39,12 @@ export const meta = {
 			message: 'No such file.',
 			code: 'NO_SUCH_FILE',
 			id: 'cd1e9f3e-5a12-4ab4-96f6-5d0a2cc32050',
+		},
+
+		cannotCreateChannel: {
+			message: 'This user cant create channel.',
+			code: 'CANNOT_CREATE_CHANNEL',
+			id: '1c42ccc4-38ee-4b64-bac8-288f1d8816e4',
 		},
 	},
 } as const;
@@ -66,8 +73,15 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 
 		private idService: IdService,
 		private channelEntityService: ChannelEntityService,
+
+		private roleService: RoleService,
 	) {
 		super(meta, paramDef, async (ps, me) => {
+
+			if ((await this.roleService.getUserPolicies(me.id)).canCreateChannel === false) {
+				throw new ApiError(meta.errors.cannotCreateChannel);
+			}
+
 			let banner = null;
 			if (ps.bannerId != null) {
 				banner = await this.driveFilesRepository.findOneBy({

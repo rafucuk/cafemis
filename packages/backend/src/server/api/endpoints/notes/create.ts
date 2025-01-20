@@ -19,6 +19,7 @@ import { DI } from '@/di-symbols.js';
 import { isQuote, isRenote } from '@/misc/is-renote.js';
 import { IdentifiableError } from '@/misc/identifiable-error.js';
 import { ApiError } from '../../error.js';
+import { RoleService } from '@/core/RoleService.js';
 
 export const meta = {
 	tags: ['notes'],
@@ -143,6 +144,12 @@ export const meta = {
 			code: 'CONTAINS_TOO_MANY_MENTIONS',
 			id: '4de0363a-3046-481b-9b0f-feff3e211025',
 		},
+
+		cannotCreateNote: {
+			message: 'This user cant create note.',
+			code: 'CANNOT_CREATE_NOTE',
+			id: 'aa51b021-2c68-483e-9ef0-22e06d495e7f',
+		},
 	},
 } as const;
 
@@ -252,10 +259,16 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 		@Inject(DI.channelsRepository)
 		private channelsRepository: ChannelsRepository,
 
+		private roleService: RoleService,
 		private noteEntityService: NoteEntityService,
 		private noteCreateService: NoteCreateService,
 	) {
 		super(meta, paramDef, async (ps, me) => {
+
+			if ((await this.roleService.getUserPolicies(me.id)).canCreateNote === false) {
+				throw new ApiError(meta.errors.cannotCreateNote);
+			}
+
 			if (ps.text && ps.text.length > this.config.maxNoteLength) {
 				throw new ApiError(meta.errors.maxLength);
 			}

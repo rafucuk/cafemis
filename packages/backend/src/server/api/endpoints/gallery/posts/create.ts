@@ -12,6 +12,8 @@ import type { MiDriveFile } from '@/models/DriveFile.js';
 import { IdService } from '@/core/IdService.js';
 import { GalleryPostEntityService } from '@/core/entities/GalleryPostEntityService.js';
 import { DI } from '@/di-symbols.js';
+import { RoleService } from '@/core/RoleService.js';
+import { ApiError } from '../../../error.js';
 
 export const meta = {
 	tags: ['gallery'],
@@ -34,7 +36,11 @@ export const meta = {
 	},
 
 	errors: {
-
+		cannotCreateGallery: {
+			message: 'This user cant create gallery.',
+			code: 'CANNOT_CREATE_GALLERY',
+			id: 'b527ceff-3f55-4ffb-aae4-2ce659001ed4',
+		},
 	},
 } as const;
 
@@ -62,8 +68,14 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 
 		private galleryPostEntityService: GalleryPostEntityService,
 		private idService: IdService,
+		private roleService: RoleService,
 	) {
 		super(meta, paramDef, async (ps, me) => {
+
+			if ((await this.roleService.getUserPolicies(me.id)).canCreateGallery === false) {
+				throw new ApiError(meta.errors.cannotCreateGallery);
+			}
+
 			const files = (await Promise.all(ps.fileIds.map(fileId =>
 				this.driveFilesRepository.findOneBy({
 					id: fileId,

@@ -14,6 +14,7 @@ import { DI } from '@/di-symbols.js';
 import { ApiError } from '../../error.js';
 import { NoteCreateService } from '@/core/NoteCreateService.js';
 import { SearchService } from '@/core/SearchService.js';
+import { RoleService } from '@/core/RoleService.js';
 
 export const meta = {
 	tags: ['pages'],
@@ -45,6 +46,11 @@ export const meta = {
 			message: 'Specified name already exists.',
 			code: 'NAME_ALREADY_EXISTS',
 			id: '4650348e-301c-499a-83c9-6aa988c66bc1',
+		},
+		cannotCreatePage: {
+			message: 'This user cant create page.',
+			code: 'CANNOT_CREATE_PAGE',
+			id: '72ca4050-f247-4c79-9be7-f4f653f5670c',
 		},
 	},
 } as const;
@@ -83,9 +89,15 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 		private idService: IdService,
 		private noteCreateService: NoteCreateService,
 
+		private roleService: RoleService,
 		private searchService: SearchService,
 	) {
 		super(meta, paramDef, async (ps, me) => {
+
+			if ((await this.roleService.getUserPolicies(me.id)).canCreatePage === false) {
+				throw new ApiError(meta.errors.cannotCreatePage);
+			}
+
 			let eyeCatchingImage = null;
 			if (ps.eyeCatchingImageId != null) {
 				eyeCatchingImage = await this.driveFilesRepository.findOneBy({
