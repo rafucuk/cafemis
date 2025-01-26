@@ -574,6 +574,10 @@ const routes: RouteDef[] = [{
 	path: '/bubble-game',
 	component: page(() => import('@/pages/drop-and-fusion.vue')),
 	loginRequired: true,
+},{
+	path: '/sudoku',
+	component: page(() => import('@/pages/sudoku.vue')),
+	loginRequired: true,
 }, {
 	path: '/reversi',
 	component: page(() => import('@/pages/reversi/index.vue')),
