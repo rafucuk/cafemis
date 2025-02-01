@@ -1843,7 +1843,7 @@ export interface Locale extends ILocale {
      */
     "moderationLogs": string;
     /**
-     * {n} kullanıcı tarafından bahsedilen
+     * {n} kullanıcı tarafından bahsedildi
      */
     "nUsersMentioned": ParameterizedString<"n">;
     /**
@@ -3457,7 +3457,7 @@ export interface Locale extends ILocale {
      */
     "postToGallery": string;
     /**
-     * Bu hashtag'e gönder
+     * Bu etiket'e gönder
      */
     "postToHashtag": string;
     /**
@@ -3549,7 +3549,7 @@ export interface Locale extends ILocale {
      */
     "searchResult": string;
     /**
-     * Hashtag'ler
+     * Etiket'ler
      */
     "hashtags": string;
     /**
@@ -7827,7 +7827,7 @@ export interface Locale extends ILocale {
              */
             "link": string;
             /**
-             * Hashtag
+             * Etiket
              */
             "hashtag": string;
             /**
@@ -8964,7 +8964,7 @@ export interface Locale extends ILocale {
          */
         "description": string;
         /**
-         * Biyografinizde hashtag'ler de ekleyebilirsiniz.
+         * Biyografinizde etiket'ler de ekleyebilirsiniz.
          */
         "youCanIncludeHashtags": string;
         /**
@@ -9387,6 +9387,10 @@ export interface Locale extends ILocale {
          * Thumbnail ayarla
          */
         "eyeCatchingImageSet": string;
+        /**
+         * Virgül, boşluk veya enter kullanarak etiketleri ayır.
+         */
+        "tagsHelpText": string;
         /**
          * Thumbnail'ı kaldır
          */

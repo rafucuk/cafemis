@@ -4768,6 +4768,7 @@ export type components = {
       font: string;
       script: string;
       eyeCatchingImageId: string | null;
+      tags?: string[];
       eyeCatchingImage: components['schemas']['DriveFile'] | null;
       attachedFiles: components['schemas']['DriveFile'][];
       likedCount: number;
@@ -26011,6 +26012,7 @@ export type operations = {
           script: string;
           /** Format: misskey:id */
           eyeCatchingImageId?: string | null;
+          tags?: string[];
           /**
            * @default sans-serif
            * @enum {string}
@@ -26380,6 +26382,7 @@ export type operations = {
           script?: string;
           /** Format: misskey:id */
           eyeCatchingImageId?: string | null;
+          tags?: string[];
           /** @enum {string} */
           font?: 'serif' | 'sans-serif';
           alignCenter?: boolean;

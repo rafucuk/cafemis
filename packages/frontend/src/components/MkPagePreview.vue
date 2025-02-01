@@ -1,8 +1,3 @@
-<!--
-SPDX-FileCopyrightText: syuilo and misskey-project
-SPDX-License-Identifier: AGPL-3.0-only
--->
-
 <template>
 <MkA :to="`/@${page.user.username}/pages/${page.name}`" class="vhpxefrj">
 	<div v-if="page.eyeCatchingImage" class="thumbnail">
@@ -23,6 +18,9 @@ SPDX-License-Identifier: AGPL-3.0-only
 			<img v-if="page.user.avatarUrl" class="icon" :src="page.user.avatarUrl"/>
 			<MkUserName :key="page.user.id" :user="page.user"/>
 		</footer>
+		<div v-if="page.tags && page.tags.length" class="tags">
+			<span v-for="tag in page.tags" :key="tag" class="tag">{{ tag }}</span>
+		</div>
 	</article>
 </MkA>
 </template>
@@ -119,57 +117,22 @@ const props = defineProps<{
 				vertical-align: top;
 			}
 		}
-	}
 
-	@media (max-width: 700px) {
-		> .thumbnail {
-			position: relative;
-			width: 100%;
-			height: 100px;
+		.tags {
+			margin-top: 12px;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 6px;
 
-			& + article {
-				left: 0;
-			}
-		}
-	}
-
-	@media (max-width: 550px) {
-		font-size: 12px;
-
-		> .thumbnail {
-			height: 80px;
-			overflow: clip;
-		}
-
-		> article {
-			padding: 12px;
-		}
-	}
-
-	@media (max-width: 500px) {
-		font-size: 10px;
-
-		> .thumbnail {
-			height: 70px;
-		}
-
-		> article {
-			padding: 8px;
-
-			> header {
-				margin-bottom: 4px;
-			}
-
-			> footer {
-				margin-top: 4px;
-
-				> img {
-					width: 12px;
-					height: 12px;
-				}
+			.tag {
+				background-color: var(--MI_THEME-accent);
+				color: white;
+				padding: 4px 8px;
+				border-radius: 999px;
+				font-size: 0.75em;
+				white-space: nowrap;
 			}
 		}
 	}
 }
-
 </style>

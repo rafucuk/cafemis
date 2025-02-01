@@ -1,63 +1,95 @@
-<!--
-SPDX-FileCopyrightText: syuilo and misskey-project
-SPDX-License-Identifier: AGPL-3.0-only
--->
-
 <template>
-<MkStickyContainer>
-	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
-	<MkSpacer :contentMax="700">
-		<div class="jqqmcavi">
-			<MkButton v-if="pageId" class="button" inline link :to="`/@${ author.username }/pages/${ currentName }`"><i class="ti ti-external-link"></i> {{ i18n.ts._pages.viewPage }}</MkButton>
-			<MkButton v-if="!readonly" inline primary class="button" @click="save"><i class="ti ti-device-floppy"></i> {{ i18n.ts.save }}</MkButton>
-			<MkButton v-if="pageId" inline class="button" @click="duplicate"><i class="ti ti-copy"></i> {{ i18n.ts.duplicate }}</MkButton>
-			<MkButton v-if="pageId && !readonly" inline class="button" danger @click="del"><i class="ti ti-trash"></i> {{ i18n.ts.delete }}</MkButton>
-		</div>
+	<MkStickyContainer>
+		<template #header>
+			<MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/>
+		</template>
+		<MkSpacer :contentMax="700">
+			<div class="jqqmcavi">
+				<MkButton v-if="pageId" class="button" inline link :to="`/@${ author.username }/pages/${ currentName }`">
+					<i class="ti ti-external-link"></i> {{ i18n.ts._pages.viewPage }}
+				</MkButton>
+				<MkButton v-if="!readonly" inline primary class="button" @click="save">
+					<i class="ti ti-device-floppy"></i> {{ i18n.ts.save }}
+				</MkButton>
+				<MkButton v-if="pageId" inline class="button" @click="duplicate">
+					<i class="ti ti-copy"></i> {{ i18n.ts.duplicate }}
+				</MkButton>
+				<MkButton v-if="pageId && !readonly" inline class="button" danger @click="del">
+					<i class="ti ti-trash"></i> {{ i18n.ts.delete }}
+				</MkButton>
+			</div>
 
-		<div v-if="tab === 'settings'">
-			<div class="_gaps_m">
-				<MkInput v-model="title">
-					<template #label>{{ i18n.ts._pages.title }}</template>
-				</MkInput>
+			<div v-if="tab === 'settings'">
+				<div class="_gaps_m">
+					<MkInput v-model="title">
+						<template #label>{{ i18n.ts._pages.title }}</template>
+					</MkInput>
 
-				<MkInput v-model="summary">
-					<template #label>{{ i18n.ts._pages.summary }}</template>
-				</MkInput>
+					<MkInput v-model="summary">
+						<template #label>{{ i18n.ts._pages.summary }}</template>
+					</MkInput>
 
-				<MkInput v-model="name">
-					<template #prefix>@{{ author.username }}/pages/</template>
-					<template #label>{{ i18n.ts._pages.url }}</template>
-				</MkInput>
+					<MkInput v-model="name">
+						<template #prefix>@{{ author.username }}/pages/</template>
+						<template #label>{{ i18n.ts._pages.url }}</template>
+					</MkInput>
 
-				<MkSwitch v-model="alignCenter">{{ i18n.ts._pages.alignCenter }}</MkSwitch>
+					<MkSwitch v-model="alignCenter">{{ i18n.ts._pages.alignCenter }}</MkSwitch>
 
-				<MkSelect v-model="font">
-					<template #label>{{ i18n.ts._pages.font }}</template>
-					<option value="serif">{{ i18n.ts._pages.fontSerif }}</option>
-					<option value="sans-serif">{{ i18n.ts._pages.fontSansSerif }}</option>
-				</MkSelect>
+					<MkSelect v-model="font">
+						<template #label>{{ i18n.ts._pages.font }}</template>
+						<option value="serif">{{ i18n.ts._pages.fontSerif }}</option>
+						<option value="sans-serif">{{ i18n.ts._pages.fontSansSerif }}</option>
+					</MkSelect>
 
-				<MkSwitch v-model="hideTitleWhenPinned">{{ i18n.ts._pages.hideTitleWhenPinned }}</MkSwitch>
+					<MkSwitch v-model="hideTitleWhenPinned">{{ i18n.ts._pages.hideTitleWhenPinned }}</MkSwitch>
 
-				<div class="eyeCatch">
-					<MkButton v-if="eyeCatchingImageId == null && !readonly" @click="setEyeCatchingImage"><i class="ti ti-plus"></i> {{ i18n.ts._pages.eyeCatchingImageSet }}</MkButton>
-					<div v-else-if="eyeCatchingImage">
-						<img :src="eyeCatchingImage.url" :alt="eyeCatchingImage.name" style="max-width: 100%;"/>
-						<MkButton v-if="!readonly" @click="removeEyeCatchingImage()"><i class="ti ti-trash"></i> {{ i18n.ts._pages.eyeCatchingImageRemove }}</MkButton>
+					<!-- New Modular Tags Input -->
+					<div class="tags-input-wrapper">
+						<label>{{ i18n.ts.hashtags }}</label>
+						<div class="tags">
+							<!-- Display each tag as a box -->
+							<span v-for="(tag, index) in tags" :key="index" class="tag">
+								{{ tag }}
+								<button type="button" @click="removeTag(index)" class="remove-tag-btn">
+									<i class="ti ti-trash"></i>
+								</button>
+							</span>
+							<!-- The input for adding new tags -->
+							<MkInput
+								v-model="tagInput"
+								@keydown="onTagInputKeydown"
+								placeholder="Add tag"
+								class="tag-input"
+							/>
+						</div>
+						<div class="help-text">{{ i18n.ts._pages.tagsHelpText }}</div>
+					</div>
+
+					<div class="eyeCatch">
+						<MkButton v-if="eyeCatchingImageId == null && !readonly" @click="setEyeCatchingImage">
+							<i class="ti ti-plus"></i> {{ i18n.ts._pages.eyeCatchingImageSet }}
+						</MkButton>
+						<div v-else-if="eyeCatchingImage">
+							<img :src="eyeCatchingImage.url" :alt="eyeCatchingImage.name" style="max-width: 100%;"/>
+							<MkButton v-if="!readonly" @click="removeEyeCatchingImage()">
+								<i class="ti ti-trash"></i> {{ i18n.ts._pages.eyeCatchingImageRemove }}
+							</MkButton>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div v-else-if="tab === 'contents'">
-			<div :class="$style.contents">
-				<XBlocks v-model="content" class="content"/>
-
-				<MkButton v-if="!readonly" rounded class="add" @click="add()"><i class="ti ti-plus"></i></MkButton>
+			<div v-else-if="tab === 'contents'">
+				<div :class="$style.contents">
+					<XBlocks v-model="content" class="content"/>
+					<MkButton v-if="!readonly" rounded class="add" @click="add()">
+						<i class="ti ti-plus"></i>
+					</MkButton>
+				</div>
 			</div>
-		</div>
-	</MkSpacer>
-</MkStickyContainer>
+		</MkSpacer>
+	</MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
@@ -101,6 +133,11 @@ const content = ref<Misskey.entities.Page['content']>([]);
 const alignCenter = ref(false);
 const hideTitleWhenPinned = ref(false);
 
+// --- New Modular Tags System ---
+// Remove the old single-string tags input in favor of an array-based system.
+const tags = ref<string[]>([]);
+const tagInput = ref('');
+
 provide('readonly', readonly.value);
 
 watch(eyeCatchingImageId, async () => {
@@ -125,6 +162,7 @@ function getSaveOptions() {
 		content: content.value,
 		variables: [],
 		eyeCatchingImageId: eyeCatchingImageId.value,
+		tags: tags.value, // Send tags as an array
 	};
 }
 
@@ -226,6 +264,29 @@ function removeEyeCatchingImage() {
 	eyeCatchingImageId.value = null;
 }
 
+// --- Tag Input Handlers ---
+// Adds the current tag input value as a tag if it is not empty and not already added.
+function addTag() {
+	const trimmed = tagInput.value.trim();
+	if (trimmed && !tags.value.includes(trimmed)) {
+		tags.value.push(trimmed);
+	}
+	tagInput.value = '';
+}
+
+// Listens for "Enter", "Space", or "," to trigger adding the tag.
+function onTagInputKeydown(e: KeyboardEvent) {
+	if (e.key === 'Enter' || e.key === ' ' || e.key === ',') {
+		e.preventDefault();
+		addTag();
+	}
+}
+
+// Remove a tag from the tags array.
+function removeTag(index: number) {
+	tags.value.splice(index, 1);
+}
+
 async function init() {
 	if (props.initPageId) {
 		page.value = await misskeyApi('pages/show', {
@@ -251,6 +312,10 @@ async function init() {
 		alignCenter.value = page.value.alignCenter;
 		content.value = page.value.content;
 		eyeCatchingImageId.value = page.value.eyeCatchingImageId;
+		// Initialize tags if available
+		if (page.value.tags && Array.isArray(page.value.tags)) {
+			tags.value = page.value.tags;
+		}
 	} else {
 		const id = uuid();
 		content.value = [{
@@ -379,6 +444,56 @@ definePageMetadata(() => ({
 
 	> .add {
 		margin-bottom: 16px;
+	}
+}
+
+/* Styles for the modular tags input */
+.tags-input-wrapper {
+	margin-bottom: 16px;
+
+	label {
+		display: block;
+		font-weight: bold;
+		margin-bottom: 4px;
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		border: 1px solid #ccc;
+		padding: 4px;
+		border-radius: 4px;
+
+		.tag {
+			background-color: #e0e0e0;
+			border-radius: 4px;
+			padding: 4px 8px;
+			margin: 4px 4px 4px 0;
+			display: flex;
+			align-items: center;
+
+			.remove-tag-btn {
+				background: transparent;
+				border: none;
+				margin-left: 4px;
+				cursor: pointer;
+			}
+		}
+
+		.tag-input {
+			flex: 1;
+			min-width: 120px;
+			border: none;
+			outline: none;
+			padding: 4px;
+		}
+	}
+
+	.help-text {
+		font-size: 0.85em;
+		color: #777;
+		margin-top: 4px;
 	}
 }
 </style>
