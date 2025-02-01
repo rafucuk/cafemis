@@ -1,5 +1,3 @@
-const { MigrationInterface, QueryRunner } = require("typeorm");
-
 module.exports = class PageTags1738395630985 {
     name = 'PageTags1738395630985'
 
