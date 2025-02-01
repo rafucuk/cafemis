@@ -1,4 +1,4 @@
-module.exports = class PageTags1738395630985 {
+export class PageTags1738395630985 {
     name = 'PageTags1738395630985'
 
     async up(queryRunner) {
