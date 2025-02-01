@@ -76,10 +76,17 @@ SPDX-License-Identifier: AGPL-3.0-only
 						</MkA>
 						<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user!" :inline="true" :transparent="false" :full="true" :class="$style.follow"/>
 					</div>
-					<div :class="$style.pageDate">
+					
+					<div class="hashtags-title">{{ i18n.ts.hashtags }}</div> <!-- Moved to a new line above the tags -->
+					<div v-if="page.tags && page.tags.length" :class="$style.tags">
+						<span v-for="tag in page.tags" :key="tag" :class="$style.tag">{{ tag }}</span>
+					</div>
+
+					<div :class="$style.pageDate" style="margin-top: 2rem;">
 						<div><i class="ti ti-clock"></i> {{ i18n.ts.createdAt }}: <MkTime :time="page.createdAt" mode="detail"/></div>
 						<div v-if="page.createdAt != page.updatedAt"><i class="ti ti-clock-edit"></i> {{ i18n.ts.updatedAt }}: <MkTime :time="page.updatedAt" mode="detail"/></div>
 					</div>
+
 				</div>
 				<MkAd :prefer="['horizontal', 'horizontal-big']"/>
 				<MkContainer :max-height="300" :foldable="true" class="other">
@@ -345,7 +352,25 @@ definePageMetadata(() => ({
 	opacity: 0;
 }
 
+.tags {
+	margin-top: 12px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	.tag {
+		background-color: var(--MI_THEME-accent);
+		color: white;
+		padding: 4px 8px;
+		border-radius: 999px;
+		font-size: 0.75em;
+		white-space: nowrap;
+	}
+}
+
 .generalActionButton {
+	display: flex;
+    align-items: center;  // Vertically center the icon inside the button
+    justify-content: center;  // Horizontally center the icon inside the button
 	height: 2.5rem;
 	width: 2.5rem;
 	text-align: center;

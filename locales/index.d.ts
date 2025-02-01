@@ -3457,7 +3457,7 @@ export interface Locale extends ILocale {
      */
     "postToGallery": string;
     /**
-     * Bu etiket'e gönder
+     * Bu etikete gönder
      */
     "postToHashtag": string;
     /**
@@ -3549,7 +3549,7 @@ export interface Locale extends ILocale {
      */
     "searchResult": string;
     /**
-     * Etiket'ler
+     * Etiketler
      */
     "hashtags": string;
     /**
@@ -8964,7 +8964,7 @@ export interface Locale extends ILocale {
          */
         "description": string;
         /**
-         * Biyografinizde etiket'ler de ekleyebilirsiniz.
+         * Biyografinizde etiketler de ekleyebilirsiniz.
          */
         "youCanIncludeHashtags": string;
         /**
@@ -9387,6 +9387,10 @@ export interface Locale extends ILocale {
          * Thumbnail ayarla
          */
         "eyeCatchingImageSet": string;
+        /**
+         * Etiketleri buraya girin
+         */
+        "tagsWrite": string;
         /**
          * Virgül, boşluk veya enter kullanarak etiketleri ayır.
          */

@@ -48,49 +48,27 @@
 					<div class="tags-input-wrapper">
 						<label>{{ i18n.ts.hashtags }}</label>
 						<div class="tags">
-							<!-- Display each tag as a box -->
-							<span v-for="(tag, index) in tags" :key="index" class="tag">
+							<!-- Display each tag as a MkButton -->
+							<MkButton v-for="(tag, index) in tags" :key="index" inline primary class="tag" @click="removeTag(index)">
 								{{ tag }}
-								<button type="button" @click="removeTag(index)" class="remove-tag-btn">
-									<i class="ti ti-trash"></i>
-								</button>
-							</span>
+								<i class="ti ti-trash"></i>
+							</MkButton>
 							<!-- The input for adding new tags -->
 							<MkInput
 								v-model="tagInput"
 								@keydown="onTagInputKeydown"
-								placeholder="Add tag"
+								:placeholder="i18n.ts._pages.tagsWrite"
 								class="tag-input"
 							/>
 						</div>
 						<div class="help-text">{{ i18n.ts._pages.tagsHelpText }}</div>
 					</div>
-
-					<div class="eyeCatch">
-						<MkButton v-if="eyeCatchingImageId == null && !readonly" @click="setEyeCatchingImage">
-							<i class="ti ti-plus"></i> {{ i18n.ts._pages.eyeCatchingImageSet }}
-						</MkButton>
-						<div v-else-if="eyeCatchingImage">
-							<img :src="eyeCatchingImage.url" :alt="eyeCatchingImage.name" style="max-width: 100%;"/>
-							<MkButton v-if="!readonly" @click="removeEyeCatchingImage()">
-								<i class="ti ti-trash"></i> {{ i18n.ts._pages.eyeCatchingImageRemove }}
-							</MkButton>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div v-else-if="tab === 'contents'">
-				<div :class="$style.contents">
-					<XBlocks v-model="content" class="content"/>
-					<MkButton v-if="!readonly" rounded class="add" @click="add()">
-						<i class="ti ti-plus"></i>
-					</MkButton>
 				</div>
 			</div>
 		</MkSpacer>
 	</MkStickyContainer>
 </template>
+
 
 <script lang="ts" setup>
 import { computed, provide, watch, ref } from 'vue';
@@ -457,29 +435,12 @@ definePageMetadata(() => ({
 		margin-bottom: 4px;
 	}
 
+
 	.tags {
+		margin-top: 12px;
 		display: flex;
 		flex-wrap: wrap;
-		align-items: center;
-		border: 1px solid #ccc;
-		padding: 4px;
-		border-radius: 4px;
-
-		.tag {
-			background-color: #e0e0e0;
-			border-radius: 4px;
-			padding: 4px 8px;
-			margin: 4px 4px 4px 0;
-			display: flex;
-			align-items: center;
-
-			.remove-tag-btn {
-				background: transparent;
-				border: none;
-				margin-left: 4px;
-				cursor: pointer;
-			}
-		}
+		gap: 6px;
 
 		.tag-input {
 			flex: 1;

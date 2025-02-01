@@ -2390,6 +2390,7 @@ _pages:
   fontSansSerif: "Sans Serif"
   eyeCatchingImageSet: "Set thumbnail"
   tagsHelpText: "Use comma, space, or enter to seperate tags"
+  tagsWrite: "Add tags here"
   eyeCatchingImageRemove: "Delete thumbnail"
   chooseBlock: "Add a block"
   enterSectionTitle: "Enter a section title"
