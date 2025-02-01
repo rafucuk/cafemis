@@ -335,6 +335,7 @@ import * as ep___pages_create from './endpoints/pages/create.js';
 import * as ep___pages_delete from './endpoints/pages/delete.js';
 import * as ep___pages_search from './endpoints/pages/search.js';
 import * as ep___pages_featured from './endpoints/pages/featured.js';
+import * as ep___pages_searchByTag from './endpoints/pages/search-by-tag.js';
 import * as ep___pages_like from './endpoints/pages/like.js';
 import * as ep___pages_show from './endpoints/pages/show.js';
 import * as ep___pages_unlike from './endpoints/pages/unlike.js';
@@ -742,6 +743,7 @@ const $pagePush: Provider = { provide: 'ep:page-push', useClass: ep___pagePush.d
 const $pages_create: Provider = { provide: 'ep:pages/create', useClass: ep___pages_create.default };
 const $pages_delete: Provider = { provide: 'ep:pages/delete', useClass: ep___pages_delete.default };
 const $pages_featured: Provider = { provide: 'ep:pages/featured', useClass: ep___pages_featured.default };
+const $pages_searchByTag: Provider = { provide: 'ep:pages/search-by-tag', useClass: ep___pages_searchByTag.default };
 const $pages_like: Provider = { provide: 'ep:pages/like', useClass: ep___pages_like.default };
 const $pages_show: Provider = { provide: 'ep:pages/show', useClass: ep___pages_show.default };
 const $pages_search: Provider = { provide: 'ep:pages/search', useClass: ep___pages_search.default };
@@ -1152,6 +1154,7 @@ const $reversi_verify: Provider = { provide: 'ep:reversi/verify', useClass: ep__
 		$notifications_testNotification,
 		$pagePush,
 		$pages_create,
+		$pages_searchByTag,
 		$pages_delete,
 		$pages_featured,
 		$pages_search,
@@ -1558,6 +1561,7 @@ const $reversi_verify: Provider = { provide: 'ep:reversi/verify', useClass: ep__
 		$pagePush,
 		$pages_create,
 		$pages_search,
+		$pages_searchByTag,
 		$pages_delete,
 		$pages_featured,
 		$pages_like,

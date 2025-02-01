@@ -69,6 +69,7 @@ export const paramDef = {
 		font: { type: 'string', enum: ['serif', 'sans-serif'] },
 		alignCenter: { type: 'boolean' },
 		hideTitleWhenPinned: { type: 'boolean' },
+		tags: {type: 'array'},
 	},
 	required: ['pageId'],
 } as const;
@@ -124,6 +125,7 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 				hideTitleWhenPinned: ps.hideTitleWhenPinned,
 				font: ps.font,
 				eyeCatchingImageId: ps.eyeCatchingImageId,
+				tags: ps.tags,
 			});
 		});
 	}

@@ -183,6 +183,14 @@ export const packedPageSchema = {
 			type: 'string',
 			optional: false, nullable: true,
 		},
+		tags: {
+			type: 'array',
+			optional: true, nullable: false,
+			items: {
+				type: 'string',
+				optional: false, nullable: false,
+			},
+		},
 		eyeCatchingImage: {
 			type: 'object',
 			optional: false, nullable: true,

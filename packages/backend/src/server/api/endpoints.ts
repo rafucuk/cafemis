@@ -342,6 +342,7 @@ import * as ep___pages_create from './endpoints/pages/create.js';
 import * as ep___pages_delete from './endpoints/pages/delete.js';
 import * as ep___pages_featured from './endpoints/pages/featured.js';
 import * as ep___pages_like from './endpoints/pages/like.js';
+import * as ep___pages_searchByTag from './endpoints/pages/search-by-tag.js';
 import * as ep___pages_show from './endpoints/pages/show.js';
 import * as ep___pages_unlike from './endpoints/pages/unlike.js';
 import * as ep___pages_update from './endpoints/pages/update.js';
@@ -748,6 +749,7 @@ const eps = [
 	['pages/delete', ep___pages_delete],
 	['pages/search', ep___pages_search],
 	['pages/featured', ep___pages_featured],
+	['pages/search-by-tag', ep___pages_searchByTag],
 	['pages/like', ep___pages_like],
 	['pages/show', ep___pages_show],
 	['pages/unlike', ep___pages_unlike],

@@ -68,6 +68,12 @@ export class MiPage {
 	})
 	public eyeCatchingImageId: MiDriveFile['id'] | null;
 
+	@Index('IDX_NOTE_TAGS', { synchronize: false })
+	@Column('varchar', {
+		length: 128, array: true, default: '{}',
+	})
+	public tags: string[];
+
 	@ManyToOne(type => MiDriveFile, {
 		onDelete: 'CASCADE',
 	})
