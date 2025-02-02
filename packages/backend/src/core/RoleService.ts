@@ -366,68 +366,80 @@ export class RoleService implements OnApplicationShutdown, OnModuleInit {
 
 	@bindThis
 	public async getUserPolicies(userId: MiUser['id'] | null): Promise<RolePolicies> {
-		const basePolicies = { ...DEFAULT_POLICIES, ...this.meta.policies };
+	const basePolicies = { ...DEFAULT_POLICIES, ...this.meta.policies };
 
-		if (userId == null) return basePolicies;
+	if (userId == null) return basePolicies;
 
-		const roles = await this.getUserRoles(userId);
+	const roles = await this.getUserRoles(userId);
 
-		function calc<T extends keyof RolePolicies>(name: T, aggregate: (values: RolePolicies[T][]) => RolePolicies[T]) {
-			if (roles.length === 0) return basePolicies[name];
-
-			const policies = roles.map(role => role.policies[name] ?? { priority: 0, useDefault: true });
-
-			const p2 = policies.filter(policy => policy.priority === 2);
-			if (p2.length > 0) return aggregate(p2.map(policy => policy.useDefault ? basePolicies[name] : policy.value));
-
-			const p1 = policies.filter(policy => policy.priority === 1);
-			if (p1.length > 0) return aggregate(p1.map(policy => policy.useDefault ? basePolicies[name] : policy.value));
-
-			return aggregate(policies.map(policy => policy.useDefault ? basePolicies[name] : policy.value));
+	const calc = <T extends keyof RolePolicies>(
+		name: T, 
+		aggregate: (values: RolePolicies[T][]) => RolePolicies[T]
+	  ): RolePolicies[T] => {
+		// Directly check if any role indicates an administrator.
+		if (roles.some(r => r.isAdministrator)) {
+		  return (typeof basePolicies[name] === "boolean" 
+			? true 
+			: Number.MAX_SAFE_INTEGER) as RolePolicies[T];
 		}
+	  
+		if (roles.length === 0) return basePolicies[name];
+	  
+		const policies = roles.map(role => role.policies[name] ?? { priority: 0, useDefault: true });
+	  
+		const p2 = policies.filter(policy => policy.priority === 2);
+		if (p2.length > 0) return aggregate(p2.map(policy => policy.useDefault ? basePolicies[name] : policy.value));
+	  
+		const p1 = policies.filter(policy => policy.priority === 1);
+		if (p1.length > 0) return aggregate(p1.map(policy => policy.useDefault ? basePolicies[name] : policy.value));
+	  
+		return aggregate(policies.map(policy => policy.useDefault ? basePolicies[name] : policy.value));
+	  };
+	  
 
-		return {
-			gtlAvailable: calc('gtlAvailable', vs => vs.some(v => v === true)),
-			btlAvailable: calc('btlAvailable', vs => vs.some(v => v === true)),
-			ltlAvailable: calc('ltlAvailable', vs => vs.some(v => v === true)),
-			canPublicNote: calc('canPublicNote', vs => vs.some(v => v === true)),
-			canCreateNote: calc('canCreateNote', vs => vs.some(v => v === true)),
-			canCreatePage: calc('canCreatePage', vs => vs.some(v => v === true)),
-			canCreateGallery: calc('canCreateGallery', vs => vs.some(v => v === true)),
-			canCreatePlay: calc('canCreatePlay', vs => vs.some(v => v === true)),
-			canCreateChannel: calc('canCreateChannel', vs => vs.some(v => v === true)),
-			scheduleNoteMax: calc('scheduleNoteMax', vs => Math.max(...vs)),
-			mentionLimit: calc('mentionLimit', vs => Math.max(...vs)),
-			canInvite: calc('canInvite', vs => vs.some(v => v === true)),
-			inviteLimit: calc('inviteLimit', vs => Math.max(...vs)),
-			inviteLimitCycle: calc('inviteLimitCycle', vs => Math.max(...vs)),
-			inviteExpirationTime: calc('inviteExpirationTime', vs => Math.max(...vs)),
-			canManageCustomEmojis: calc('canManageCustomEmojis', vs => vs.some(v => v === true)),
-			canManageAvatarDecorations: calc('canManageAvatarDecorations', vs => vs.some(v => v === true)),
-			canSearchNotes: calc('canSearchNotes', vs => vs.some(v => v === true)),
-			canUseTranslator: calc('canUseTranslator', vs => vs.some(v => v === true)),
-			canHideAds: calc('canHideAds', vs => vs.some(v => v === true)),
-			driveCapacityMb: calc('driveCapacityMb', vs => Math.max(...vs)),
-			alwaysMarkNsfw: calc('alwaysMarkNsfw', vs => vs.some(v => v === true)),
-			canUpdateBioMedia: calc('canUpdateBioMedia', vs => vs.some(v => v === true)),
-			pinLimit: calc('pinLimit', vs => Math.max(...vs)),
-			antennaLimit: calc('antennaLimit', vs => Math.max(...vs)),
-			wordMuteLimit: calc('wordMuteLimit', vs => Math.max(...vs)),
-			webhookLimit: calc('webhookLimit', vs => Math.max(...vs)),
-			clipLimit: calc('clipLimit', vs => Math.max(...vs)),
-			noteEachClipsLimit: calc('noteEachClipsLimit', vs => Math.max(...vs)),
-			userListLimit: calc('userListLimit', vs => Math.max(...vs)),
-			userEachUserListsLimit: calc('userEachUserListsLimit', vs => Math.max(...vs)),
-			rateLimitFactor: calc('rateLimitFactor', vs => Math.max(...vs)),
-			canImportNotes: calc('canImportNotes', vs => vs.some(v => v === true)),
-			avatarDecorationLimit: calc('avatarDecorationLimit', vs => Math.max(...vs)),
-			canImportAntennas: calc('canImportAntennas', vs => vs.some(v => v === true)),
-			canImportBlocking: calc('canImportBlocking', vs => vs.some(v => v === true)),
-			canImportFollowing: calc('canImportFollowing', vs => vs.some(v => v === true)),
-			canImportMuting: calc('canImportMuting', vs => vs.some(v => v === true)),
-			canImportUserLists: calc('canImportUserLists', vs => vs.some(v => v === true)),
-		};
+	return {
+		gtlAvailable: calc('gtlAvailable', vs => vs.some(v => v === true)),
+		btlAvailable: calc('btlAvailable', vs => vs.some(v => v === true)),
+		ltlAvailable: calc('ltlAvailable', vs => vs.some(v => v === true)),
+		canPublicNote: calc('canPublicNote', vs => vs.some(v => v === true)),
+		canCreateNote: calc('canCreateNote', vs => vs.some(v => v === true)),
+		canCreatePage: calc('canCreatePage', vs => vs.some(v => v === true)),
+		canCreateGallery: calc('canCreateGallery', vs => vs.some(v => v === true)),
+		canCreatePlay: calc('canCreatePlay', vs => vs.some(v => v === true)),
+		canCreateChannel: calc('canCreateChannel', vs => vs.some(v => v === true)),
+		scheduleNoteMax: calc('scheduleNoteMax', vs => Math.max(...vs)),
+		mentionLimit: calc('mentionLimit', vs => Math.max(...vs)),
+		canInvite: calc('canInvite', vs => vs.some(v => v === true)),
+		inviteLimit: calc('inviteLimit', vs => Math.max(...vs)),
+		inviteLimitCycle: calc('inviteLimitCycle', vs => Math.max(...vs)),
+		inviteExpirationTime: calc('inviteExpirationTime', vs => Math.max(...vs)),
+		canManageCustomEmojis: calc('canManageCustomEmojis', vs => vs.some(v => v === true)),
+		canManageAvatarDecorations: calc('canManageAvatarDecorations', vs => vs.some(v => v === true)),
+		canSearchNotes: calc('canSearchNotes', vs => vs.some(v => v === true)),
+		canUseTranslator: calc('canUseTranslator', vs => vs.some(v => v === true)),
+		canHideAds: calc('canHideAds', vs => vs.some(v => v === true)),
+		driveCapacityMb: calc('driveCapacityMb', vs => Math.max(...vs)),
+		alwaysMarkNsfw: calc('alwaysMarkNsfw', vs => vs.some(v => v === true)),
+		canUpdateBioMedia: calc('canUpdateBioMedia', vs => vs.some(v => v === true)),
+		pinLimit: calc('pinLimit', vs => Math.max(...vs)),
+		antennaLimit: calc('antennaLimit', vs => Math.max(...vs)),
+		wordMuteLimit: calc('wordMuteLimit', vs => Math.max(...vs)),
+		webhookLimit: calc('webhookLimit', vs => Math.max(...vs)),
+		clipLimit: calc('clipLimit', vs => Math.max(...vs)),
+		noteEachClipsLimit: calc('noteEachClipsLimit', vs => Math.max(...vs)),
+		userListLimit: calc('userListLimit', vs => Math.max(...vs)),
+		userEachUserListsLimit: calc('userEachUserListsLimit', vs => Math.max(...vs)),
+		rateLimitFactor: calc('rateLimitFactor', vs => Math.max(...vs)),
+		canImportNotes: calc('canImportNotes', vs => vs.some(v => v === true)),
+		avatarDecorationLimit: calc('avatarDecorationLimit', vs => Math.max(...vs)),
+		canImportAntennas: calc('canImportAntennas', vs => vs.some(v => v === true)),
+		canImportBlocking: calc('canImportBlocking', vs => vs.some(v => v === true)),
+		canImportFollowing: calc('canImportFollowing', vs => vs.some(v => v === true)),
+		canImportMuting: calc('canImportMuting', vs => vs.some(v => v === true)),
+		canImportUserLists: calc('canImportUserLists', vs => vs.some(v => v === true)),
+	};
 	}
+
 
 	@bindThis
 	public async isModerator(user: { id: MiUser['id']; isRoot: MiUser['isRoot'] } | null): Promise<boolean> {

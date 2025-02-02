@@ -65,6 +65,14 @@
 					</div>
 				</div>
 			</div>
+
+		<div v-else-if="tab === 'contents'">
+			<div :class="$style.contents">
+				<XBlocks v-model="content" class="content"/>
+
+				<MkButton v-if="!readonly" rounded class="add" @click="add()"><i class="ti ti-plus"></i></MkButton>
+			</div>
+		</div>
 		</MkSpacer>
 	</MkStickyContainer>
 </template>
