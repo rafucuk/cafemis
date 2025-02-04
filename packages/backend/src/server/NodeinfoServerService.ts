@@ -131,7 +131,7 @@ export class NodeinfoServerService {
 					enableEmail: meta.enableEmail,
 					enableServiceWorker: meta.enableServiceWorker,
 					proxyAccountName: proxyAccount ? proxyAccount.username : null,
-					themeColor: meta.themeColor ?? '#86b300',
+					themeColor: meta.themeColor ?? '#f5a9e0',
 				},
 			};
 			if (version >= 21) {

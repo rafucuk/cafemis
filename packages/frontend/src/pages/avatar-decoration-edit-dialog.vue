@@ -187,7 +187,7 @@ async function del() {
 	}
 
 	&.dark {
-		background: #222;
+		background: #0f0f0f;
 	}
 }
 

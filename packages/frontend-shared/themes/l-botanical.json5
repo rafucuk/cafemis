@@ -24,7 +24,7 @@
 		hashtag: '#4cb8d4',
 		link: '@accent',
 		buttonGradateB: ':hue<-70<@accent',
-		success: '#86b300',
+		success: '#f5a9e0',
     X14: '#ebe7e5'
 	},
 }

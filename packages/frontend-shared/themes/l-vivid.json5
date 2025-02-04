@@ -27,7 +27,7 @@
 		hashtag: '#92d400',
 		mention: '@accent',
 		modalBg: 'rgba(0, 0, 0, 0.3)',
-		success: '#86b300',
+		success: '#f5a9e0',
 		acrylicBg: ':alpha<0.5<@bg',
 		indicator: '@accent',
 		mentionMe: '@mention',

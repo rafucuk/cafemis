@@ -22,7 +22,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 					<div style="background: #000;" :class="$style.imgContainer">
 						<img :src="imgUrl" :class="$style.img"/>
 					</div>
-					<div style="background: #222;" :class="$style.imgContainer">
+					<div style="background: #0f0f0f;" :class="$style.imgContainer">
 						<img :src="imgUrl" :class="$style.img"/>
 					</div>
 					<div style="background: #ddd;" :class="$style.imgContainer">

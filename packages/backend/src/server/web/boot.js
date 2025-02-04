@@ -176,17 +176,16 @@
 				<path d="M12 9v2m0 4v.01"></path>
 				<path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"></path>
 			</svg>
-			<h1>Failed to load<br>読み込みに失敗しました</h1>
+			<h1>Failed to load</h1>
 			<button class="button-big" onclick="location.reload(true);">
 				<span class="button-label-big">Reload / リロード</span>
 			</button>
-			<p><b>The following actions may solve the problem. / 以下を行うと解決する可能性があります。</b></p>
-			<p>Update your os and browser / ブラウザおよびOSを最新バージョンに更新する</p>
-			<p>Disable an adblocker / アドブロッカーを無効にする</p>
-			<p>Clear the browser cache / ブラウザのキャッシュをクリアする</p>
-			<p>&#40;Tor Browser&#41; Set dom.webaudio.enabled to true / dom.webaudio.enabledをtrueに設定する</p>
-			<details style="color: #86b300;">
-				<summary>Other options / その他のオプション</summary>
+			<p><b>The following actions may solve the problem.</b></p>
+			<p>Update your os and browser</p>
+			<p>Disable an adblocker</p>
+			<p>Clear the browser cache </p>
+			<details style="color: #f5a9e0;">
+				<summary>Other options</summary>
 				<a href="/flush">
 					<button class="button-small">
 						<span class="button-label-small">Clear preferences and cache</span>
@@ -231,7 +230,7 @@
 
 		body,
 		html {
-			background-color: #222;
+			background-color: #0f0f0f;
 			color: #dfddcc;
 			justify-content: center;
 			margin: auto;
@@ -248,12 +247,12 @@
 		}
 
 		.button-big {
-			background: linear-gradient(90deg, rgb(134, 179, 0), rgb(74, 179, 0));
+			background: linear-gradient(90deg, rgb(245, 194, 231), rgb(245, 169, 224));
 			line-height: 50px;
 		}
 
 		.button-big:hover {
-			background: rgb(153, 204, 0);
+			background: rgb(245, 194, 231);
 		}
 
 		.button-small {
@@ -266,20 +265,20 @@
 		}
 
 		.button-label-big {
-			color: #222;
+			color: #0f0f0f;
 			font-weight: bold;
 			font-size: 1.2em;
 			padding: 12px;
 		}
 
 		.button-label-small {
-			color: rgb(153, 204, 0);
+			color: rgb(245, 194, 231);
 			font-size: 16px;
 			padding: 12px;
 		}
 
 		a {
-			color: rgb(134, 179, 0);
+			color: rgb(245, 194, 231);
 			text-decoration: none;
 		}
 

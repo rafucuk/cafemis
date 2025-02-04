@@ -15,7 +15,7 @@
 
 body,
 html {
-    background-color: #222;
+    background-color: #0f0f0f;
     color: #dfddcc;
     justify-content: center;
     margin: auto;
@@ -32,12 +32,12 @@ button {
 }
 
 .button-big {
-    background: linear-gradient(90deg, rgb(134, 179, 0), rgb(74, 179, 0));
+    background: linear-gradient(90deg, rgb(245, 194, 231), rgb(245, 169, 224));
     line-height: 50px;
 }
 
 .button-big:hover {
-    background: rgb(153, 204, 0);
+    background: rgb(245, 194, 231);
 }
 
 .button-small {
@@ -50,20 +50,20 @@ button {
 }
 
 .button-label-big {
-    color: #222;
+    color: #0f0f0f;
     font-weight: bold;
     font-size: 20px;
     padding: 12px;
 }
 
 .button-label-small {
-    color: rgb(153, 204, 0);
+    color: rgb(245, 194, 231);
     font-size: 16px;
     padding: 12px;
 }
 
 a {
-    color: rgb(134, 179, 0);
+    color: rgb(245, 194, 231);
     text-decoration: none;
 }
 

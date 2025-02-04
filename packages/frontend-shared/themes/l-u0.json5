@@ -37,7 +37,7 @@
 		hashtag: '#1f3134',
 		mention: '@accent',
 		modalBg: 'rgba(0, 0, 0, 0.5)',
-		success: '#86b300',
+		success: '#f5a9e0',
 		buttonBg: '#0000000d',
 		switchBg: 'rgba(255, 255, 255, 0.15)',
 		acrylicBg: ':alpha<0.5<@bg',

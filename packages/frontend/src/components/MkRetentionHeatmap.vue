@@ -75,7 +75,7 @@ async function renderChart() {
 
 	await nextTick();
 
-	const color = defaultStore.state.darkMode ? '#b4e900' : '#86b300';
+	const color = defaultStore.state.darkMode ? '#b4e900' : '#f5a9e0';
 
 	const getYYYYMMDD = (date: Date) => {
 		const y = date.getFullYear().toString().padStart(2, '0');
