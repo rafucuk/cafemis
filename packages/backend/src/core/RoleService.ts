@@ -377,10 +377,12 @@ export class RoleService implements OnApplicationShutdown, OnModuleInit {
 		aggregate: (values: RolePolicies[T][]) => RolePolicies[T]
 	  ): RolePolicies[T] => {
 		// Directly check if any role indicates an administrator.
-		if (roles.some(r => r.isAdministrator)) {
-		  return (typeof basePolicies[name] === "boolean" 
-			? true 
-			: Number.MAX_SAFE_INTEGER) as RolePolicies[T];
+		if (roles.length === 0) {
+			if (roles.some(r => r.isAdministrator)) {
+				return (typeof basePolicies[name] === "boolean" 
+				  ? true 
+				  : Number.MAX_SAFE_INTEGER) as RolePolicies[T];
+			}
 		}
 	  
 		if (roles.length === 0) return basePolicies[name];
